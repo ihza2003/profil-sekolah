@@ -1,0 +1,139 @@
+/* style hero */
+.hero-header {
+    padding: 90px 0;
+    background-position: center 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-header h2 {
+    font-size: 2rem !important;
+}
+
+.hero-header .overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+/* end style hero */
+
+/* style card */
+.card .img-alumni {
+    object-fit: cover;
+    min-width: 12rem;
+}
+
+.card_testimoni {
+    min-height: 18rem;
+    padding: 1rem 1rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+}
+
+.sampul-gambar img {
+    transition: transform 0.5s ease-in-out;
+}
+
+.sampul-gambar:hover img {
+    transform: scale(1.1);
+}
+
+
+
+/* Untuk card title dan layout */
+.card-title {
+    font-size: 1.3rem;
+    color: #003366 !important;
+    transition: color 0.2s ease-in-out;
+}
+
+.card-title:hover {
+    color: rgba(87, 158, 234) !important;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+/* style detail testimoni */
+.detail-section {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.detail-card {
+    border: none;
+    /* overflow: hidden; */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+.media-card {
+    border: none;
+    overflow: hidden;
+}
+
+
+.detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+.detail-image:hover {
+    transform: scale(1.1);
+}
+
+.detail-body h3 {
+    font-weight: 700;
+    color: #003366 !important;
+}
+
+.detail-body small {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.detail-body .status {
+    font-style: italic;
+    color: #198754;
+    font-weight: 600;
+}
+
+.detail-body .text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-top: 15px;
+    text-align: justify;
+    color: #555;
+}
+
+.btn-back {
+    margin-top: 40px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-back:hover {
+    transform: scale(1.05);
+}
+
+/* end style detail testimoni */
+
+@media (max-width: 768px) {
+    .hero-header h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .detail-image {
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .video-testimoni {
+        width: 100% !important;
+    }
+}

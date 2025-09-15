@@ -1,0 +1,189 @@
+/* style hero */
+.hero-header {
+    padding: 90px 0;
+    background-position: center 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-header h2 {
+    font-size: 2rem !important;
+}
+
+.hero-header .overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+/* end style hero */
+
+/* style visi misi */
+.garis {
+    width: 100px;
+    height: 4px;
+}
+
+.isi-konten {
+    line-height: 1.7;
+    text-align: justify;
+    color: #000000;
+}
+
+/* end style visi misi */
+
+
+
+/* style daftar guru */
+.card .img-guru {
+    object-fit: cover;
+    min-width: 12rem;
+    transition: transform 0.5s ease-in-out;
+    border-radius: 1rem;
+}
+
+.card .img-guru:hover {
+    transform: scale(1.05);
+}
+
+.card_guru {
+    min-height: 18rem;
+    padding: 1.2rem 1rem;
+    background-color: #ffffff;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #003366 !important;
+    /* transition: color 0.2s ease-in-out; */
+}
+
+.media-card {
+    border: none;
+    overflow: hidden;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+    background-color: #008000;
+    padding: 0.5em 0.75em;
+    /* transition: all 0.2s ease-in-out; */
+}
+
+/* .badge:hover {
+    background-color: #0d6efd;
+    color: #fff !important;
+    border: none;
+} */
+
+/* .card-guru {
+    overflow: hidden;
+    height: 350px;
+    max-width: 270px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.card-guru img {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-guru:hover img {
+    transform: scale(1.05);
+    filter: brightness(60%);
+}
+
+.card-guru .info-overlay {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: rgba(150, 191, 236, 0.85);
+    color: white;
+    transition: bottom 0.5s ease;
+}
+
+.card-guru:hover .info-overlay {
+    bottom: 0;
+}
+
+.card-guru.active .info-overlay {
+    bottom: 0;
+}
+
+.card-guru .info-overlay h5,
+.card-guru .info-overlay p {
+    margin: 0;
+} */
+
+/* end style daftar guru */
+
+/* style daftar fasilitas */
+.card_count {
+    border-radius: 1rem;
+}
+
+.card_fasilitas {
+    overflow: hidden;
+    /* height: 300px; */
+    /* width: 500px ; */
+}
+
+/* .card_jumlah {
+    font-size: 1.2rem;
+    font-weight: bold;
+} */
+
+.card_fasilitas a {
+    display: block;
+    height: 100%;
+}
+
+.card_fasilitas img {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease !important;
+}
+
+
+.card_fasilitas:hover img {
+    transform: scale(1.05) !important;
+    filter: brightness(60%) !important;
+}
+
+.info-overlay {
+    cursor: zoom-in !important;
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    padding: 20px;
+    background: rgba(87, 158, 234, 0.85);
+    /* Biru transparan */
+    color: white;
+    transition: bottom 0.4s ease;
+}
+
+.card_fasilitas:hover .info-overlay {
+    bottom: 0;
+}
+
+/* end style daftar fasilitas */
+
+/* style responsive */
+@media screen and (max-width: 768px) {
+
+    .text-hero,
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .hero-header h2 {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* end style responsive */

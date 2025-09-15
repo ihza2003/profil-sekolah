@@ -1,0 +1,25 @@
+/* Sidebar nav item */
+.fi-sidebar-nav a {
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.5rem;
+    /* biar lebih modern */
+}
+
+/* Hover effect */
+.fi-sidebar-nav a:hover {
+    background-color: #eaf2ff;
+    /* warna hover sesuai palette */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Active (current page) */
+.fi-sidebar-nav a[data-active="true"] {
+    background-color: #1d4ed8;
+    /* warna utama (bisa diganti Color::Blue dsb.) */
+    color: white !important;
+    box-shadow: 0 2px 10px rgba(29, 78, 216, 0.25);
+}
+
+.fi-sidebar-nav a[data-active="true"] svg {
+    color: white !important;
+}

@@ -1,0 +1,92 @@
+/* style hero */
+.hero-header {
+    padding: 90px 0;
+    background-position: center 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-header h2 {
+    font-size: 2rem !important;
+}
+
+.hero-header .overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+/* end style hero */
+
+.kontak-section {
+    background-color: #f8f9fa;
+}
+
+.judul {
+    color: #003366;
+    letter-spacing: 1px;
+}
+
+.single-underline::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #003366;
+    margin: 8px auto;
+}
+
+.kontak-card {
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kontak-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sosmed-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sosmed-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Brand colors */
+.bg-twitter {
+    background-color: #1DA1F2;
+}
+
+.bg-youtube {
+    background-color: #FF0000;
+}
+
+.bg-facebook {
+    background-color: #1877F2;
+}
+
+.bg-instagram {
+    background-color: #E1306C;
+}
+
+.bg-tiktok {
+    background-color: #010101;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-header h2 {
+        font-size: 1.4rem !important;
+    }
+
+}

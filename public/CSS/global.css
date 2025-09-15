@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif !important;
+}
+
+
+body {
+    background-color: #f4faff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand img {
+    max-height: 65px;
+    width: auto;
+}
+
+/* pengaturan navbar */
+.dropdown-menu .dropdown-item {
+    color: #003366 !important;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+
+}
+
+/* Membuat dropdown terbuka saat di-hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.navbar-nav .nav-item .nav-link {
+    color: #003366 !important;
+    /* font-size: 1.2rem;
+    letter-spacing: 1px; */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #008000 !important;
+    border-bottom: 3px solid #008000;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #008000 !important;
+    border-bottom: 3px solid #008000;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    /* Membuat teks lebih tebal */
+    color: #008000 !important;
+    /* Mengubah warna teks saat aktif */
+    border-bottom: 3px solid #008000;
+    /* Menambahkan garis bawah pada item aktif */
+}
+
+/* breadcrumb style */
+.breadcrumb {
+    background: transparent;
+}
+
+.breadcrumb-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.breadcrumb-item.active {
+    color: rgb(220, 211, 211);
+    font-weight: bold;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "»";
+    /* Separator (bisa diganti dengan > atau ») */
+    color: #ffffff;
+    padding: 0 0.2rem;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* end style breadcrumb */
+
+/* footer style */
+footer {
+    background-color: #003366;
+}
+
+footer .wrap {
+    border: 2px solid #ffffff;
+    transition: border 0.5s ease, transform 0.5s ease;
+}
+
+footer a {
+    transition: color 0.5s ease;
+}
+
+footer .wrap:hover {
+    border: 1px solid #ffc107;
+}
+
+footer a:hover {
+    color: #ffc107 !important;
+}
+
+/* pengaturan tab search global */
+.modern-tab {
+    border: none !important;
+    background: #f8f9fa;
+
+    padding: 8px 20px;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.modern-tab:hover {
+    background: #e9ecef;
+    color: #008000;
+    /* hijau elegan */
+}
+
+.modern-tab.active {
+    background: #008000 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3);
+}
+
+/* end pengaturan tab search global  */
+
+@media screen and (max-width: 768px) {
+    .pencarian {
+        width: 100% !important;
+    }
+
+}

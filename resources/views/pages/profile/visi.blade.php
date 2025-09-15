@@ -1,0 +1,19 @@
+@extends('layouts.app')
+@section('title', 'Visi Misi')
+
+@push('styles')
+<link href="{{ asset('CSS/profil.css') }}" rel="stylesheet">
+@endpush
+
+@section('content')
+
+<x-Hero-Header
+    title="Visi & Misi"
+    image="{{ asset('IMG/landing2.jpeg') }}"
+    :breadcrumb="[
+        ['label' => 'Beranda', 'url' => route('beranda')],
+        ['label' => 'Visi & Misi', 'url' => route('profile.visi')]
+    ]" />
+
+<x-profile.konten-visi :visi="$visi" />
+@endsection
