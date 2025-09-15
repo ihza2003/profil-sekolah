@@ -3,7 +3,7 @@
 @section('title', 'Galeri')
 
 @push('styles')
-<link href="{{ asset('CSS/galeri.css') }}" rel="stylesheet">
+<link href="{{ asset('CSS/geleri.css') }}" rel="stylesheet">
 @endpush
 
 
