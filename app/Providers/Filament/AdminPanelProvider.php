@@ -23,8 +23,8 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->brandLogo(asset('IMG/logo2.png'))
-            ->brandLogoHeight('50px')
+            ->brandLogo(asset('IMG/logo1.png'))
+            ->brandLogoHeight('60px')
             // ->brandName('Admin MASAMUJAYA')
             ->favicon(asset('IMG/logo1.png'))
             ->default()
