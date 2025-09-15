@@ -17,12 +17,19 @@ class AdminSeeder extends Seeder
     {
         DB::table('admins')->insert([
             'name' => 'Admin MTS',
-            'email' => 'admins@gmail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => Hash::make('password12345'), // password terenkripsi
-            'remember_token' => \Str::random(10),
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123'), // password terenkripsi
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        // DB::table('admins')->insert([
+        //     'name' => 'Admin MTS',
+        //     'email' => 'admin@gmail.com',
+        //     'email_verified_at' => Carbon::now(),
+        //     'password' => Hash::make('admin123'), // password terenkripsi
+        //     'remember_token' => \Str::random(10),
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]);
     }
 }
