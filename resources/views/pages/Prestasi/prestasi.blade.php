@@ -8,7 +8,7 @@
 @section('content')
 <x-Hero-Header
     title="Prestasi Kami"
-    image="{{ asset('IMG/Hero-prestasi.jpg')}}"
+    image="{{ asset('IMG/landing2.jpeg')}}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Prestasi', 'url' => route('prestasi')]
