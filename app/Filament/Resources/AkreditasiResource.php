@@ -17,7 +17,7 @@ class AkreditasiResource extends Resource
 {
     protected static ?string $model = Akreditasi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $navigationLabel = 'Akreditasi Sekolah';
 
@@ -42,7 +42,11 @@ class AkreditasiResource extends Resource
                     ->image()
                     ->imagePreviewHeight('150')
                     ->maxSize(5120)
-                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png']),
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
+                        return 'Akreditasi' . '-' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+                    })
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),

@@ -32,8 +32,9 @@
             <i class="bi bi-search"></i> Tidak ada prestasi ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
         </div>
         @else
-        <div class="text-center text-muted mt-4">
-            Belum ada prestasi yang ditampilkan.
+        <div class="alert alert-warning mt-5 rounded-4 d-flex align-items-center justify-content-center" role="alert" data-aos="fade-up">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <h5 class="text-muted my-3">Belum ada Prestasi yang Ditampilkan</h5>
         </div>
         @endif
         @endforelse

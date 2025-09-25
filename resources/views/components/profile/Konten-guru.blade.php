@@ -37,7 +37,7 @@
                             <!-- Pendidikan -->
                             <p class="text-success d-flex align-items-center mb-2">
                                 <i class="bi bi-mortarboard-fill fs-4 me-4"></i>
-                                {{ $g->{"riwayat-pendidikan"} }}
+                                {{ $g->{"riwayat_pendidikan"} }}
                             </p>
 
                             <!-- Mapel -->

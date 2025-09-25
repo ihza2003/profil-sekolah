@@ -30,6 +30,14 @@ class KurikulumResource extends Resource
                     ->required()
                     ->maxLength(255),
 
+                Forms\Components\Select::make('mapel')
+                    ->label('Mata Pelajaran')
+                    ->placeholder('Pilih Mata Pelajaran yang diajarkan')
+                    ->multiple()
+                    ->relationship('mapel', 'nama')
+                    ->preload()
+                    ->searchable(),
+
                 // Forms\Components\TextInput::make('kelas')
                 //     ->label('Kelas')
                 //     ->placeholder('Masukan Kelas untuk kurikulum')
@@ -57,16 +65,13 @@ class KurikulumResource extends Resource
                 Tables\Columns\TextColumn::make('mapel.nama')
                     ->label('Mapel')
                     ->listWithLineBreaks(),
-                // Tables\Columns\TextColumn::make('kelas_count')
-                //     ->label('Kelas Terkait')
-                //     ->counts('kelas')
-                //     ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
                     ->dateTime('d M Y - H:i')
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diperbarui Pada')
                     ->dateTime('d M Y - H:i')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -91,7 +96,7 @@ class KurikulumResource extends Resource
     public static function getRelations(): array
     {
         return [
-            MapelRelationManager::class,
+            // MapelRelationManager::class,
         ];
     }
 

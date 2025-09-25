@@ -81,6 +81,17 @@
     transform: scale(1.1);
 }
 
+.image-cadangan {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-cadangan:hover {
+    transform: scale(1.1);
+}
+
 .content-paragraph {
     font-size: 1rem;
     line-height: 1.7;

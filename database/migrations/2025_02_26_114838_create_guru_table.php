@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nip')->unique();
+            $table->string('nip')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->string('foto');
-            $table->string('riwayat-pendidikan');
+            $table->string('riwayat_pendidikan');
             $table->foreignId('admin_id')->nullable()->constrained('admins')->nullOnDelete();
             $table->timestamps();
         });

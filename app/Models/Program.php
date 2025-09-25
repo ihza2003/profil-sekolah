@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Program extends Model
@@ -24,5 +25,22 @@ class Program extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($record) {
+            $files = [
+                'gambar',
+                'gambar_tambahan',
+                'gambar_cadangan',
+            ];
+
+            foreach ($files as $field) {
+                if ($record->$field && Storage::disk('public')->exists($record->$field)) {
+                    Storage::disk('public')->delete($record->$field);
+                }
+            }
+        });
     }
 }

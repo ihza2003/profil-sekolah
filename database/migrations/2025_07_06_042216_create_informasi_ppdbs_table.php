@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->string('banner_ppdb');
+            $table->string('gelombang')->nullable();
+            $table->string('tahun');
+
             // Periode Aktif
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
@@ -24,11 +27,15 @@ return new class extends Migration
             $table->date('tanggal_daftar_ulang_mulai')->nullable();
             $table->date('tanggal_daftar_ulang_selesai')->nullable();
 
-
+            // Informasi tambahan
             $table->json('syarat_pendaftaran');
             $table->json('prosedur_pendaftaran');
 
             $table->string('kontak_wa');
+
+            // Jam operasional
+            $table->string('jam_operasional_hari')->nullable();
+            $table->string('jam_operasional_jam')->nullable();
 
             // Status aktif
             $table->boolean('status_aktif')->default(true);

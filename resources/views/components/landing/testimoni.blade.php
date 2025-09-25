@@ -31,7 +31,7 @@
                                         <img src="{{ asset('storage/' . $t->foto) }}" class="rounded-circle me-2 border shadow-sm" width="50" height="50" alt="foto testimoni">
                                         <div class="ket-alumni">
                                             <h6 class="mb-0 fw-bold">{{ $t->nama }}</h6>
-                                            <small class="text-primary d-block">{{ $t->status }}</small>
+                                            <small class="text-success d-block">{{ $t->status }}</small>
                                             <small class="text-muted">{{ $t->posisi }}</small>
                                         </div>
                                     </div>

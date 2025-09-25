@@ -17,6 +17,6 @@ class CreateFasilitas extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Fasilitas Berhasil Ditambahkan';
+        return 'Berhasi menambahkan fasilitas';
     }
 }

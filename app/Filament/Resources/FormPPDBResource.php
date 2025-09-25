@@ -501,6 +501,24 @@ class FormPPDBResource extends Resource
                     ->relationship('informasiPpdb', 'tahun')
                     ->searchable()
                     ->preload(),
+
+                SelectFilter::make('status_verifikasi')
+                    ->options([
+                        'belum_diverifikasi' => 'Belum Diverifikasi',
+                        'proses_verifikasi' => 'Proses Verifikasi',
+                        'diterima' => 'Diterima',
+                        'ditolak' => 'Ditolak',
+                    ])
+                    ->label('Status Verifikasi'),
+                SelectFilter::make('status_kelulusan')
+                    ->options([
+                        'belum_diseleksi' => 'Belum Diseleksi',
+                        'proses_seleksi' => 'Proses Seleksi',
+                        'lulus' => 'Lulus',
+                        'tidak_lulus' => 'Tidak Lulus',
+                    ])
+                    ->label('Status Kelulusan'),
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

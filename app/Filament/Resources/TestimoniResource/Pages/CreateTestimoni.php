@@ -10,8 +10,14 @@ class CreateTestimoni extends CreateRecord
 {
     protected static string $resource = TestimoniResource::class;
 
+
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Berhasil menambahkan testimoni';
     }
 }

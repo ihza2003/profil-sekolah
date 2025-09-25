@@ -17,6 +17,6 @@ class CreateGaleri extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Galeri Berhasil Ditambahkan';
+        return 'Berhasil menambahkan galeri';
     }
 }

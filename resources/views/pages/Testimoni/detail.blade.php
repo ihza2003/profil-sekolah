@@ -23,7 +23,7 @@
                 <div class="row g-0">
                     <!-- Foto Alumni -->
                     <div class="col-md-4">
-                        <div class="media-card rounded-4">
+                        <div class="media-card rounded-4 h-100">
                             <img src="{{ asset('storage/'.$testimoni->foto) }}"
                                 alt="{{ $testimoni->nama }}"
                                 class="detail-image">

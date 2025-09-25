@@ -81,7 +81,7 @@ class MapelResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->color('success'),
                 Tables\Actions\DeleteAction::make()
-                    ->successNotificationTitle('Berhasil menghapus Mapel')
+                    ->successNotificationTitle('Berhasil menghapus Mata Pelajaran')
                     ->color('danger'),
             ])
             ->bulkActions([

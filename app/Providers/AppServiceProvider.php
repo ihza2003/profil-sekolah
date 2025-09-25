@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Medsos;
 use App\Models\Profil;
+use Filament\Support\Assets\Css;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Filament\Support\Facades\FilamentAsset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('profil', Profil::with('admin')->first());
         });
+
+        FilamentAsset::register([
+            Css::make('custom-theme', public_path('CSS/filament/theme.css')),
+        ]);
     }
 }

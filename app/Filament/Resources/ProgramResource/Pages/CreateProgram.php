@@ -17,6 +17,6 @@ class CreateProgram extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Prestasi Berhasi Ditambahkan';
+        return 'Berhasil menambahkan program';
     }
 }

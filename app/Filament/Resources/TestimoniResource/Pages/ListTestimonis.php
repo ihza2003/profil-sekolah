@@ -13,7 +13,10 @@ class ListTestimonis extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Buat Testimoni')
+                ->successNotificationTitle('Berhasil membuat Testimoni')
+                ->color('primary'),
         ];
     }
 }

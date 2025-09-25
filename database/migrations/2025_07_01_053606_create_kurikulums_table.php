@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('kurikulum', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori');
-            $table->string('kelas');
-            $table->text('deksripsi');
+            $table->string('nama_kurikulum');
             $table->foreignId('admin_id')->nullable()->constrained('admins')->nullOnDelete();
             $table->timestamps();
         });

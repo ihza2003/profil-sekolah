@@ -17,7 +17,7 @@ use App\Http\Controllers\AkreditasController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\TestimoniController;
-use App\Http\Controllers\ProfilSekolahController;
+
 
 // Route::get('/', function () {
 //     return view('beranda');
@@ -42,7 +42,7 @@ Route::get('/guru/pencarian', [GuruController::class, 'searchGuru'])->name('guru
 // route berita
 Route::get('/berita', [BeritaController::class, 'showBerita'])->name('berita');
 Route::get('/berita/pencarian', [BeritaController::class, 'searchBerita'])->name('berita.search');
-Route::get('/berita/detail/{id}', [BeritaController::class, 'DetailBerita'])->name('berita.detail');
+Route::get('/berita/detail-berita/{id}', [BeritaController::class, 'DetailBerita'])->name('berita.detail');
 
 
 // Route Prestasi

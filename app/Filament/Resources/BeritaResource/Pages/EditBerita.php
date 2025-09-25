@@ -13,17 +13,14 @@ class EditBerita extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->successNotificationTitle('Berhasil menghapus berita')
+                ->color('danger'),
         ];
     }
 
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
-    }
-
-    protected function getCreatedNotificationTitle(): ?string
-    {
-        return 'Berita Berhasi Diedit';
     }
 }

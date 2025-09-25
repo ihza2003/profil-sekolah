@@ -17,6 +17,6 @@ class CreatePrestasi extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Prestasi Berhasi Ditambahkan';
+        return 'Berhasi menambahkan prestasi';
     }
 }

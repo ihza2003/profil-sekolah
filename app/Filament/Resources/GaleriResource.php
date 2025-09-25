@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GaleriResource\Pages;
-use App\Filament\Resources\GaleriResource\RelationManagers;
-use App\Models\Galeri;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Galeri;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\GaleriResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\GaleriResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class GaleriResource extends Resource
 {
@@ -35,7 +37,8 @@ class GaleriResource extends Resource
                 Forms\Components\TextInput::make('judul')
                     ->required()
                     ->maxLength(100)
-                    ->label('Judul Galeri'),
+                    ->label('Judul Galeri')
+                    ->placeholder('Masukkan Judul Galeri, Maks: 100 Karakter'),
 
                 Forms\Components\FileUpload::make('gambar')
                     ->required()
@@ -43,7 +46,15 @@ class GaleriResource extends Resource
                     ->disk('public')
                     ->directory('galeri')
                     ->image()
-                    ->imagePreviewHeight('150'),
+                    ->imagePreviewHeight('150')
+                    ->placeholder('Maks: 5MB, Format: JPG, JPEG, PNG')
+                    ->maxSize(5120)
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Galeri-' . Str::uuid() . '.' . $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
@@ -90,7 +101,9 @@ class GaleriResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->successNotificationTitle('Data berhasil Di update')
                     ->color('success'),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotificationTitle('Berhasil menghapus Galeri')
+                    ->color('danger'),
 
             ])
             ->bulkActions([

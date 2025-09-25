@@ -27,6 +27,12 @@ class CreateFormPPDB extends CreateRecord
 
     //     return $data;
     // }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Berhasil Menambahkan Data Siswa Baru';
+    }
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $infoAktif = InformasiPpdb::where('status_aktif', true)->first();

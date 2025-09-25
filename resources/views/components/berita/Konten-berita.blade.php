@@ -32,12 +32,14 @@
             <i class="bi bi-search"></i> Tidak ada berita ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
         </div>
         @else
-        <div class="text-center text-muted mt-4">
-            Belum ada berita yang ditampilkan.
+        <div class="alert alert-warning mt-5 rounded-4 d-flex align-items-center justify-content-center" role="alert" data-aos="fade-up">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <h5 class="text-muted my-3">Belum ada Berita yang ditampilkan</h5>
         </div>
         @endif
         @endforelse
     </div>
+
     <!-- Pagination -->
     <div class="mt-5 mb-3 d-flex justify-content-center">
         {{ $berita->links('pagination::bootstrap-5') }}

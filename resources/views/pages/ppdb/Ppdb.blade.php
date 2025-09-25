@@ -58,6 +58,7 @@
                         {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_daftar_ulang_selesai))->translatedFormat("d F Y") }}
                     </li>
                     @endif
+
                 </ul>
             </div>
         </div>
@@ -77,6 +78,20 @@
             <div class="ppdb-info-box shadow-sm text-center" data-aos="fade-up">
                 <h4 class="fw-bold mb-3">Informasi Kontak</h4>
                 <p>Jika mengalami kendala, silakan hubungi kami atau datang langsung ke sekolah</p>
+
+                @if($informasi_ppdb->jam_operasional_hari || $informasi_ppdb->jam_operasional_jam)
+                <div class="mt-4">
+                    <h6 class="fw-bold">
+                        🕒 Jam Operasional
+                    </h6>
+                    <p class="mb-0 text-muted">
+                        {{ $informasi_ppdb->jam_operasional_hari ?? '-' }}
+                        @if($informasi_ppdb->jam_operasional_jam)
+                        , {{ $informasi_ppdb->jam_operasional_jam }}
+                        @endif
+                    </p>
+                </div>
+                @endif
                 <a href="https://wa.me/{{ $informasi_ppdb->kontak_wa }}" target="_blank" class="btn cta-btn-wa mt-3 px-4 py-2">
                     Hubungi via WhatsApp
                 </a>

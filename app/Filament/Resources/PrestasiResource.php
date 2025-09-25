@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PrestasiResource\Pages;
-use App\Filament\Resources\PrestasiResource\RelationManagers;
-use App\Models\Prestasi;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Prestasi;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PrestasiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PrestasiResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class PrestasiResource extends Resource
 {
@@ -35,7 +37,8 @@ class PrestasiResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('judul')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->placeholder('Masukkan Judul Prestasi maksimal 100 karakter'),
 
                 Forms\Components\RichEditor::make('isi')
                     ->label('Deskripsi')
@@ -52,27 +55,50 @@ class PrestasiResource extends Resource
                         'h2',
                         'h3',
                         'codeBlock',
+                    ])
+                    ->required()
+                    ->placeholder('Masukkan Deskripsi Prestasi Setidaknya 20 karakter')
+                    ->rules(['min:20'])
+                    ->validationMessages([
+                        'min' => 'Deskripsi Prestasi harus terdiri dari setidaknya 20 karakter.',
                     ]),
                 Forms\Components\FileUpload::make('gambar')
                     ->required()
                     ->disk('public')
                     ->directory('prestasi')
                     ->image()
-                    ->imagePreviewHeight('150'),
+                    ->imagePreviewHeight('150')
+                    ->maxSize(5120) // max 5MB
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Prestasi-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
                 Forms\Components\FileUpload::make('gambar_tambahan')
                     ->disk('public')
                     ->directory('prestasi')
                     ->image()
                     ->imagePreviewHeight('150')
-                    ->nullable(),
-                // Forms\Components\FileUpload::make('video')
-                //     ->label('Video (mp4)')
-                //     ->disk('public')
-                //     ->directory('prestasi')
-                //     ->acceptedFileTypes(['video/mp4'])
-                //     ->maxSize(10240) // maksimal 10 MB
-                //     ->previewable(false)
-                //     ->nullable(),
+                    ->nullable()
+                    ->maxSize(5120) // max 5MB
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Prestasi-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
             ]);
@@ -106,22 +132,15 @@ class PrestasiResource extends Resource
                 Tables\Columns\ImageColumn::make('gambar_tambahan')
                     ->label('Gambar Tambahan')
                     ->disk('public')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->toggleable(),
-
-                // Tables\Columns\ImageColumn::make('video')
-                //     ->label('Video')
-                //     ->url(fn($record) =>  asset('storage/berita/' . $record->video))
-                //     ->wrap()
-                //     ->openUrlInNewTab()
-                //     ->toggleable(isToggledHiddenByDefault: true)
-                //     ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
+                    ->toggleable()
                     ->dateTime('d M Y - H:i'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diperbarui Pada')
+                    ->toggleable()
                     ->dateTime('d M Y - H:i'),
             ])
             ->filters([

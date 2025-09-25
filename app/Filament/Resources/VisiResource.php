@@ -17,7 +17,7 @@ class VisiResource extends Resource
 {
     protected static ?string $model = Visi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cursor-arrow-rays';
 
     protected static ?string $navigationGroup = 'Kelola Profil Sekolah';
 

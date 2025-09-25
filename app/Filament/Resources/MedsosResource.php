@@ -100,38 +100,45 @@ class MedsosResource extends Resource
                 Tables\Columns\TextColumn::make('youtube')
                     ->label('YouTube')
                     ->wrap()
+                    ->toggleable()
                     ->url(fn($record) => $record->youtube)
-                    ->limit(30),
+                    ->limit(25),
 
                 Tables\Columns\TextColumn::make('facebook')
                     ->label('Facebook')
                     ->wrap()
+                    ->toggleable()
                     ->url(fn($record) => $record->facebook)
-                    ->limit(30),
+                    ->limit(25),
 
                 Tables\Columns\TextColumn::make('instagram')
                     ->label('Instagram')
                     ->wrap()
+                    ->toggleable()
                     ->url(fn($record) => $record->instagram)
-                    ->limit(30),
+                    ->limit(25),
 
                 Tables\Columns\TextColumn::make('twitter')
                     ->label('Twitter')
                     ->wrap()
+                    ->toggleable()
                     ->url(fn($record) => $record->twitter)
-                    ->limit(30),
+                    ->limit(25),
 
                 Tables\Columns\TextColumn::make('tiktok')
                     ->label('TikTok')
                     ->wrap()
+                    ->toggleable()
                     ->url(fn($record) => $record->tiktok)
-                    ->limit(30),
+                    ->limit(25),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
+                    ->toggleable()
                     ->dateTime('d M Y - H:i'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diupdate Pada')
+                    ->toggleable()
                     ->dateTime('d M Y - H:i'),
             ])
             ->filters([

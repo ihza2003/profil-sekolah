@@ -2,22 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProgramResource\Pages;
-use App\Filament\Resources\ProgramResource\RelationManagers;
-use App\Models\Program;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Program;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ProgramResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ProgramResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ProgramResource extends Resource
 {
     protected static ?string $model = Program::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
+    protected static ?string $navigationGroup = 'Kelola Program & Ekstrakurikuler';
 
     public static function getPluralModelLabel(): string
     {
@@ -29,22 +32,21 @@ class ProgramResource extends Resource
         return 'Program Unggulan';
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Kelola Program & Ekskul';
-    }
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('judul')
                     ->required()
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->placeholder('Masukkan Judul Program maksimal 100 karakter'),
+
                 Forms\Components\TextInput::make('kategori')
                     ->required()
                     ->label('Kategori')
-                    ->maxLength(100),
+                    ->maxLength(100)
+                    ->placeholder('Masukkan Kategori Program maksimal 100 karakter'),
+
                 Forms\Components\RichEditor::make('isi')
                     ->label('Deskripsi')
                     ->columnSpanFull()
@@ -60,34 +62,70 @@ class ProgramResource extends Resource
                         'h2',
                         'h3',
                         'codeBlock',
+                    ])
+                    ->required()
+                    ->placeholder('Masukkan Deskripsi Program unggulan Setidaknya 20 karakter')
+                    ->rules(['min:20'])
+                    ->validationMessages([
+                        'min' => 'Deskripsi Program harus terdiri dari setidaknya 20 karakter.',
                     ]),
+
                 Forms\Components\FileUpload::make('gambar')
                     ->required()
                     ->disk('public')
-                    ->directory('ekskul')
+                    ->directory('unggulan')
                     ->image()
                     ->imagePreviewHeight('150')
                     ->maxSize(5120) // max 5MB
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
-                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.'),
+                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Program-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
                 Forms\Components\FileUpload::make('gambar_tambahan')
                     ->disk('public')
-                    ->directory('ekskul')
+                    ->directory('unggulan')
                     ->image()
                     ->imagePreviewHeight('150')
                     ->maxSize(5120) // max 5MB
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
-                    ->nullable(),
+                    ->nullable()
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Program-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
+
                 Forms\Components\FileUpload::make('gambar_cadangan')
                     ->disk('public')
-                    ->directory('ekskul')
+                    ->directory('unggulan')
                     ->image()
                     ->imagePreviewHeight('150')
                     ->maxSize(5120) // max 5MB
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
-                    ->nullable(),
+                    ->nullable()
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Program-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
+
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
             ]);
@@ -127,23 +165,24 @@ class ProgramResource extends Resource
                 Tables\Columns\ImageColumn::make('gambar_tambahan')
                     ->label('Gambar Tambahan')
                     ->disk('public')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\ImageColumn::make('gambar_cadangan')
                     ->label('Gambar Tambahan')
                     ->disk('public')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
                     ->wrap()
-                    ->dateTime('d M Y - H:i'),
+                    ->dateTime('d M Y - H:i')
+                    ->toggleable(),
+
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diperbarui Pada')
                     ->wrap()
-                    ->dateTime('d M Y - H:i'),
+                    ->dateTime('d M Y - H:i')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

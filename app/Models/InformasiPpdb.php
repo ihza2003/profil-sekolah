@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InformasiPpdb extends Model
 {
@@ -12,12 +13,11 @@ class InformasiPpdb extends Model
     // Nama tabel (opsional, bisa dihapus jika sudah sesuai konvensi)
     protected $table = 'informasi_ppdbs';
 
-    // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
         'banner_ppdb',
-        'gelombang',                 // ✅ tambahkan
-        'tahun',                     // ✅ tambahkan
-        'jam_operasional_hari',      // ✅ tambahkan
+        'gelombang',
+        'tahun',
+        'jam_operasional_hari',
         'jam_operasional_jam',
         'tanggal_mulai',
         'tanggal_selesai',
@@ -47,5 +47,25 @@ class InformasiPpdb extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+
+    public function formPpdb()
+    {
+        return $this->hasMany(FormPPDB::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($record) {
+            $files = [
+                'banner_ppdb',
+            ];
+
+            foreach ($files as $field) {
+                if ($record->$field && Storage::disk('public')->exists($record->$field)) {
+                    Storage::disk('public')->delete($record->$field);
+                }
+            }
+        });
     }
 }

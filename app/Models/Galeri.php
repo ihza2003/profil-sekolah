@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Galeri extends Model
@@ -19,5 +20,20 @@ class Galeri extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($record) {
+            $files = [
+                'gambar',
+            ];
+
+            foreach ($files as $field) {
+                if ($record->$field && Storage::disk('public')->exists($record->$field)) {
+                    Storage::disk('public')->delete($record->$field);
+                }
+            }
+        });
     }
 }

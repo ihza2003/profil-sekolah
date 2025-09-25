@@ -42,7 +42,10 @@ class StrukturResource extends Resource
                     ->image()
                     ->imagePreviewHeight('150')
                     ->maxSize(5120)
-                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png']),
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
+                        return 'Struktur' . '-' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+                    }),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
@@ -63,7 +66,7 @@ class StrukturResource extends Resource
                     ->label('Dibuat Pada')
                     ->dateTime('d M Y - H:i'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Diupdate Pada')
+                    ->label('Diperbarui Pada')
                     ->dateTime('d M Y - H:i'),
             ])
             ->filters([
@@ -73,6 +76,7 @@ class StrukturResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->successNotificationTitle('Data berhasil Di update')
                     ->color('success'),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

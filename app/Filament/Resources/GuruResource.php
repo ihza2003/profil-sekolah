@@ -7,11 +7,13 @@ use App\Models\Guru;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\GuruResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\GuruResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\GuruResource\RelationManagers\MapelRelationManager;
 
 
@@ -40,7 +42,7 @@ class GuruResource extends Resource
                     ])
                     ->numeric()
                     ->unique(ignoreRecord: true),
-                Forms\Components\TextInput::make('riwayat-pendidikan')
+                Forms\Components\TextInput::make('riwayat_pendidikan')
                     ->required()
                     ->label('Riwayat Pendidikan Terakhir')
                     ->placeholder('S1 Pendidikan'),
@@ -54,7 +56,27 @@ class GuruResource extends Resource
                     ->disk('public')
                     ->directory('guru')
                     ->required()
-                    ->label('foto Guru'),
+                    ->label('foto Guru')
+                    ->imagePreviewHeight('150')
+                    ->maxSize(5120) // max 5MB
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
+                    ->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string =>
+                        'Foto Guru-' .
+                            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '-' .
+                            Str::uuid() . '.' .
+                            $file->getClientOriginalExtension(),
+                    )
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+
+                Forms\Components\Select::make('mapel')
+                    ->label('Mata Pelajaran')
+                    ->placeholder('Pilih Mata Pelajaran yang diajarkan')
+                    ->multiple()
+                    ->relationship('mapel', 'nama')
+                    ->preload()
+                    ->searchable(),
 
                 Forms\Components\Hidden::make('admin_id')->default(fn() => auth('admin')->id()),
             ]);
@@ -67,22 +89,28 @@ class GuruResource extends Resource
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Guru')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
+
                 Tables\Columns\TextColumn::make('nip')
                     ->label('NIP Guru')
                     ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('riwayat-pendidikan')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                Tables\Columns\TextColumn::make('riwayat_pendidikan')
                     ->label('Riwayat Pendidikan Terakhir')
                     ->wrap()
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
 
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email Guru')
                     ->wrap()
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\ImageColumn::make('foto')
                     ->label('Foto Guru')
@@ -93,15 +121,15 @@ class GuruResource extends Resource
                     ->label('Mata Pelajaran')
                     ->listWithLineBreaks(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
                     ->wrap()
                     ->dateTime('d M Y - H:i')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diperbarui Pada')
                     ->wrap()
                     ->dateTime('d M Y - H:i')
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -123,7 +151,7 @@ class GuruResource extends Resource
     public static function getRelations(): array
     {
         return [
-            MapelRelationManager::class,
+            // MapelRelationManager::class,
         ];
     }
 

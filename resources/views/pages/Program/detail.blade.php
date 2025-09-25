@@ -40,14 +40,14 @@
         @if($program->gambar_tambahan)
         <div class="col-lg-4 text-center mt-3">
             <div class="card media-card shadow rounded-4">
-                <img src="{{ asset('storage/' . $program->gambar_tambahan) }}" class="img-fluid hero-image shadow rounded w-100" alt="Gambar Tambahan">
+                <img src="{{ asset('storage/' . $program->gambar_tambahan) }}" class="img-fluid image-cadangan w-100" alt="Gambar Tambahan">
             </div>
         </div>
         @endif
         @if($program->gambar_cadangan)
         <div class="col-lg-4 text-center mt-3">
             <div class="card media-card shadow rounded-4">
-                <img src="{{ asset('storage/' . $program->gambar_cadangan) }}" class="img-fluid hero-image shadow rounded w-100" alt="Gambar Tambahan">
+                <img src="{{ asset('storage/' . $program->gambar_cadangan) }}" class="img-fluid image-cadangan  w-100" alt="Gambar Tambahan">
             </div>
         </div>
         @endif

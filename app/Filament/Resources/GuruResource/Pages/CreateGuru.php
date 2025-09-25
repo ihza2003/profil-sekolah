@@ -14,4 +14,9 @@ class CreateGuru extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Berhasil menambahkan guru';
+    }
 }

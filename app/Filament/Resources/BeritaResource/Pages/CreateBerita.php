@@ -17,6 +17,6 @@ class CreateBerita extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Berita Berhasi Ditambahkan';
+        return 'Berhasil menambahkan berita';
     }
 }

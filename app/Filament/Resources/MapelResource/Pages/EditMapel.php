@@ -13,7 +13,9 @@ class EditMapel extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->successNotificationTitle('Berhasil menghapus mata pelajaran')
+                ->color('danger'),
         ];
     }
 

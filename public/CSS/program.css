@@ -69,7 +69,7 @@
     text-align: justify;
 }
 
-/* style detail ekskul */
+/* style detail program */
 .hero-image {
     max-height: 480px;
     object-fit: cover;
@@ -78,6 +78,17 @@
 }
 
 .hero-image:hover {
+    transform: scale(1.1);
+}
+
+.image-cadangan {
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-cadangan:hover {
     transform: scale(1.1);
 }
 

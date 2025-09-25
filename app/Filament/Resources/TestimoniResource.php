@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TestimoniResource\Pages;
-use App\Filament\Resources\TestimoniResource\RelationManagers;
-use App\Models\Testimoni;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Testimoni;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\TestimoniResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TestimoniResource\RelationManagers;
 
 class TestimoniResource extends Resource
 {
     protected static ?string $model = Testimoni::class;
-
+    protected static ?string $pluralModelLabel = 'Testimoni';
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
     protected static ?string $navigationGroup = 'Kelola Profil Sekolah';
+    protected static ?string $navigationLabel = 'Testimoni';
 
     public static function form(Form $form): Form
     {
@@ -60,6 +62,12 @@ class TestimoniResource extends Resource
                         'h2',
                         'h3',
                         'codeBlock',
+                    ])
+                    ->required()
+                    ->placeholder('Masukkan Isi Testimoni Setidaknya 20 karakter')
+                    ->rules(['min:20'])
+                    ->validationMessages([
+                        'min' => 'Isi Testimoni harus terdiri dari setidaknya 20 karakter.',
                     ]),
 
                 Forms\Components\FileUpload::make('foto')
@@ -70,7 +78,13 @@ class TestimoniResource extends Resource
                     ->required()
                     ->label('Foto')
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
-                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.'),
+                    ->placeholder('Format gambar: jpg, jpeg, png. Ukuran maksimal: 5MB.')
+                    ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
+                        $nama = $livewire->record->nama ?? 'nama-testimoni';
+                        return 'foto testimoni-' . Str::slug($nama) . '-' . now()->format('YmdHis')
+                            . '.' . $file->getClientOriginalExtension();
+                    })
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
 
                 Forms\Components\FileUpload::make('video')
                     ->nullable()
@@ -78,10 +92,17 @@ class TestimoniResource extends Resource
                     ->disk('public')
                     ->directory('testimoni')
                     ->acceptedFileTypes(['video/mp4'])
+
                     ->maxSize(10240) // maksimal 10 MB
                     ->previewable(false)
                     ->placeholder('Format video: mp4. Ukuran maksimal: 10MB.')
-                    ->nullable(),
+                    ->nullable()
+                    ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
+                        $nama = $livewire->record->nama ?? 'nama-testimoni';
+                        return 'video testimoni-' . Str::slug($nama) . '-' . now()->format('YmdHis')
+                            . '.' . $file->getClientOriginalExtension();
+                    })
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
@@ -135,13 +156,15 @@ class TestimoniResource extends Resource
                     ->falseIcon('heroicon-o-x-mark'),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Create')
+                    ->label('Dibuat Pada')
+                    ->toggleable()
                     ->wrap()
                     ->sortable()
                     ->dateTime('d M Y - H:i'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Update')
+                    ->label('Diperbarui Pada')
                     ->wrap()
+                    ->toggleable()
                     ->sortable()
                     ->dateTime('d M Y - H:i'),
 
@@ -155,6 +178,7 @@ class TestimoniResource extends Resource
                     ->color('success'),
                 Tables\Actions\DeleteAction::make()
                     ->successNotificationTitle('Berhasil menghapus Testimoni')
+                    ->label('Hapus')
                     ->color('danger'),
             ])
             ->bulkActions([

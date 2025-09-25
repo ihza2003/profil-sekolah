@@ -17,7 +17,7 @@ class ProfilResource extends Resource
 {
     protected static ?string $model = Profil::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-office';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     protected static ?string $navigationGroup = 'Kelola Profil Sekolah';
 
@@ -71,7 +71,15 @@ class ProfilResource extends Resource
                     ->placeholder('Unggah logo sekolah')
                     ->maxSize(1024)
                     ->disk('public')
-                    ->directory('logo'),
+                    ->directory('logo')
+                    ->image()
+                    ->imagePreviewHeight('150')
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->placeholder('Maks: 10MB, Format: JPG, JPEG, PNG')
+                    ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
+                        return 'Logo' . '-' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+                    })
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
@@ -98,11 +106,13 @@ class ProfilResource extends Resource
                     ->label('Alamat')
                     ->sortable()
                     ->wrap()
+                    ->toggleable()
                     ->limit(30),
 
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')
                     ->sortable()
+                    ->toggleable()
                     ->wrap(),
 
                 Tables\Columns\TextColumn::make('embed_maps')
@@ -121,11 +131,13 @@ class ProfilResource extends Resource
                     ->label('Dibuat Pada')
                     ->dateTime()
                     ->wrap()
+                    ->toggleable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Diperbarui Pada')
                     ->dateTime()
+                    ->toggleable()
                     ->wrap()
                     ->sortable(),
             ])
