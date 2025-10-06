@@ -73,7 +73,7 @@ class BerandaController extends Controller
             ->withQueryString();
 
         return view(
-            'pages.landing.Search-Global',
+            'pages.landing.search-global',
             compact('search', 'berita', 'prestasi', 'testimoni', 'ekskul', 'program')
         );
     }
