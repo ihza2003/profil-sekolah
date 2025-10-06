@@ -11,7 +11,7 @@ class TestimoniController extends Controller
     public function showTestimoni()
     {
         $testimoni = Testimoni::with('admin')->latest()->paginate(4);
-        return view('pages.testimoni.index', compact('testimoni'));
+        return view('pages.Testimoni.index', compact('testimoni'));
     }
 
     public function searchTestimoni(Request $request)
