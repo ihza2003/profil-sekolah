@@ -17,7 +17,7 @@ use App\Filament\Resources\InformasippdbResource\RelationManagers;
 
 class InformasippdbResource extends Resource
 {
-    protected static ?string $model = Informasippdb::class;
+    protected static ?string $model = InformasiPpdb::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
 
