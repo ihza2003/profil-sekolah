@@ -225,4 +225,8 @@ main {
         font-size: 1.4rem !important;
     }
 
+    .img-logo {
+        max-height: 50px;
+    }
+
 }

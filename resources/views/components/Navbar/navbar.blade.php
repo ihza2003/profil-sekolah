@@ -2,9 +2,9 @@
     <div class="container py-2">
         <a class="navbar-brand" href="{{route('beranda')}}">
             @if($profil?->logo)
-            <img src="{{ asset('storage/' . $profil->logo) }}" alt="" class="img-fluid d-inline-block align-text-top me-2" alt="Logo">
+            <img src="{{ asset('storage/' . $profil->logo) }}" alt="" class="img-logo img-fluid d-inline-block align-text-top me-2" alt="Logo">
             @else
-            <img src="{{ asset('IMG/logo1.png') }}" alt="" class="img-fluid d-inline-block align-text-top me-2" alt="Logo">
+            <img src="{{ asset('IMG/logo1.png') }}" alt="" class="img-logo img-fluid d-inline-block align-text-top me-2" alt="Logo">
             @endif
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
