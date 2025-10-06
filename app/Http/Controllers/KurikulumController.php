@@ -20,6 +20,6 @@ class KurikulumController extends Controller
                     ->orderBy('nama'); // setelah kategori, baru urutkan nama
             }
         ])->get();
-        return view('pages.kurikulum.kurikulum', compact('kurikulums'));
+        return view('pages.Kurikulum.kurikulum', compact('kurikulums'));
     }
 }
