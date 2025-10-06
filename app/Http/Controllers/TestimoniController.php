@@ -24,12 +24,12 @@ class TestimoniController extends Controller
             ->latest()
             ->paginate(4)
             ->withQueryString();
-        return view('pages.testimoni.index', compact('testimoni'));
+        return view('pages.Testimoni.index', compact('testimoni'));
     }
 
     public function DetailTestimoni($id)
     {
         $testimoni = Testimoni::findOrFail($id);
-        return view('pages.testimoni.detail-testimoni', compact('testimoni'));
+        return view('pages.Testimoni.detail-testimoni', compact('testimoni'));
     }
 }
