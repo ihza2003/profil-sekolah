@@ -46,11 +46,11 @@
 
             <form action="{{ route('ppdb.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <x-ppdb.section-data-diri />
-                <x-ppdb.section-periodik />
-                <x-ppdb.section-orangtua />
-                <x-ppdb.section-nilai />
-                <x-ppdb.section-upload />
+                <x-PPDB.section-data-diri />
+                <x-PPDB.section-periodik />
+                <x-PPDB.section-orangtua />
+                <x-PPDB.section-nilai />
+                <x-PPDB.section-upload />
 
                 <div class="keterangan fst-italic">
                     <p> <span class="text-danger ">*</span> Wajib disi</p>
