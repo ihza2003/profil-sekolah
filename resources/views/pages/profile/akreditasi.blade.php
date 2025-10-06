@@ -13,5 +13,5 @@
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Sertifikat Akreditasi', 'url' => route('profile.akreditasi')]
     ]" />
-<x-profile.konten-akreditasi :akreditasi="$akreditasi" />
+<x-profile.Konten-akreditasi :akreditasi="$akreditasi" />
 @endsection
