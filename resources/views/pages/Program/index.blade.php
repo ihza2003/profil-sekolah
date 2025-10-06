@@ -16,6 +16,6 @@
         ['label' => 'Program Unggulan', 'url' => route('akademik.programunggulan')]
     ]" />
 
-<x-program.Konten-program :program="$program" />
+<x-Program.Konten-Program :program="$program" />
 
 @endsection
