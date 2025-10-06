@@ -17,11 +17,10 @@
  }
 
  .ppdb-info-box {
-     background: #fff;
-     border: 1px solid #dee2e6;
+     background-color: #fff;
      border-radius: 1rem;
-     padding: 30px;
-     transition: transform 0.3s ease;
+     padding: 1.5rem;
+     transition: transform .2s ease;
  }
 
  .ppdb-info-box:hover {
@@ -101,6 +100,42 @@
      background: linear-gradient(90deg, #0056b3, #0099cc);
      transform: scale(1.05);
  }
+
+ /* style hasil cek status  */
+ .status-card {
+     border-radius: 1rem;
+     overflow: hidden;
+ }
+
+ .status-header {
+     background: linear-gradient(135deg, #28a745, #218838);
+     color: #fff;
+     padding: 1.5rem;
+ }
+
+ .status-header h4 {
+     margin: 0;
+     font-weight: 700;
+ }
+
+ .info-box {
+     background: #fff;
+     border-radius: .75rem;
+     padding: 1.5rem;
+     box-shadow: 0 3px 6px rgba(0, 0, 0, .05);
+ }
+
+ .alert {
+     border-radius: .75rem;
+     font-size: .95rem;
+ }
+
+ .download-btn {
+     display: inline-block;
+     margin-top: 1rem;
+ }
+
+ /* end style hasil cek status   */
 
  /* style form pendaftaran */
  .card_pendaftaran {

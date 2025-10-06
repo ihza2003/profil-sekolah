@@ -8,11 +8,10 @@
 @section('content')
 <x-Hero-Header
     title="Testimoni"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Testimoni', 'url' => route('testimoni')]
+        ['label' => 'Testimoni', 'url' => route('beranda.testimoni')]
     ]" />
-<x-Search-ui route="{{ route('testimoni.search') }}" />
+<x-Search-ui route="{{ route('beranda.testimoni.search') }}" />
 <x-testimoni.Konten-testimoni :testimoni="$testimoni" />
 @endsection

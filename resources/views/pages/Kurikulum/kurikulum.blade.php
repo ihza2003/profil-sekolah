@@ -8,10 +8,9 @@
 @section('content')
 <x-Hero-Header
     title="Kurikulum"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Kurikulum', 'url' => route('kurikulum')]
+        ['label' => 'Kurikulum', 'url' => route('akademik.kurikulum')]
     ]" />
 <x-kurikulum.Konten-kurikulum :kurikulums="$kurikulums" />
 @endsection

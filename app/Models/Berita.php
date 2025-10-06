@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * Class Berita
+ *
+ * Model untuk data berita sekolah.
+ *
+ * @property string $judul
+ * @property string $isi
+ * @property string $gambar
+ * @property string|null $gambar_tambahan
+ * @property int $admin_id
+ */
+
 class Berita extends Model
 {
     use HasFactory;
@@ -16,15 +28,18 @@ class Berita extends Model
         'isi',
         'gambar',
         'gambar_tambahan',
-        'video',
         'admin_id',
     ];
 
+    // Relasi ke admin yang menginputkan berita.
     public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
 
+    /**
+     * Mengecek dan menghapus file jika ada di storage.
+     */
     protected static function booted()
     {
         static::deleting(function ($record) {

@@ -30,6 +30,6 @@ class TestimoniController extends Controller
     public function DetailTestimoni($id)
     {
         $testimoni = Testimoni::findOrFail($id);
-        return view('pages.testimoni.detail', compact('testimoni'));
+        return view('pages.testimoni.detail-testimoni', compact('testimoni'));
     }
 }

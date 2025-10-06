@@ -1,78 +1,79 @@
-<footer class="mt-5 text-white">
-    <div class="container py-5">
+<footer class="footer text-white pt-5">
+    <div class="container pb-4">
         <div class="row g-4">
-            <!-- Kontak Kami -->
-            @if($profil)
-            <div class="col-lg-5 col-md-6">
-                <h5 class="fw-bold mb-3">Kontak Kami</h5>
-                <ul class="list-unstyled small">
+            <!-- Kontak & Sosial -->
+            <div class="col-lg-4 col-md-12">
+                @if($profil)
+                <h6 class="footer-title">Kontak Kami</h6>
+                <ul class="list-unstyled ">
                     @if($profil?->alamat)
-                    <li class="mb-2 fs-6"><i class="bi bi-geo-alt-fill me-2"></i>{{$profil->alamat}}</li>
+                    <li><i class="bi bi-geo-alt-fill me-2 mb-2"></i>{{$profil->alamat}}</li>
                     @endif
                     @if($profil?->telepon)
-                    <li class="mb-2 fs-6"><i class="bi bi-telephone-fill me-2"></i>{{$profil->telepon}}</li>
+                    <li><i class="bi bi-telephone-fill me-2 mb-2"></i>{{$profil->telepon}}</li>
                     @endif
                     @if($profil?->email)
-                    <li><i class="bi bi-envelope-fill me-2"></i><a href="mailto:masamujaya@gmail.com" class="text-white text-decoration-none fs-6">{{$profil->email}}</a></li>
+                    <li><i class="bi bi-envelope-fill me-2"></i>{{$profil->email}}</li>
                     @endif
                 </ul>
-            </div>
-            @endif
-            <!-- Madrasah -->
-            <div class="col-lg-2 col-md-6">
-                <h5 class="fw-bold mb-3">Informasi</h5>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none fs-6">Prestasi</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none fs-6">Berita</a></li>
-                    <li><a href="#" class="text-white text-decoration-none fs-6">Akreditasi</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-md-6">
-                <h5 class="fw-bold mb-3">Akses Cepat</h5>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none fs-6">Testimoni</a></li>
-                    <li><a href="#" class="text-white text-decoration-none fs-6">PPDB</a></li>
-                </ul>
-            </div>
+                @endif
 
-            <!-- Media Sosial -->
-            @if($medsos)
-            <div class="col-lg-3 col-md-12">
-                <h5 class="fw-bold mb-3">Media Sosial</h5>
-                <div class="d-flex gap-3 fs-4">
+                @if($medsos)
+                <div class="social-icons d-flex gap-3 mt-3">
                     @if($medsos?->facebook)
-                    <div class="wrap py-1 px-2 text-white rounded-2">
-                        <a href="{{ $medsos->facebook }}" class="text-white" target="_blank"><i class="bi bi-facebook"></i></a>
-                    </div>
+                    <a href="{{ $medsos->facebook }}" class="icon facebook" target="_blank"><i class="bi bi-facebook"></i></a>
                     @endif
                     @if($medsos?->twitter)
-                    <div class="wrap py-1 px-2 text-white rounded-2">
-                        <a href="{{ $medsos->twitter }}" class="text-white" target="_blank"><i class="bi bi-twitter"></i></a>
-                    </div>
+                    <a href="{{$medsos->twitter}}" class="icon twitter" target="_blank"><i class="bi bi-twitter"></i></a>
                     @endif
                     @if($medsos?->instagram)
-                    <div class="wrap py-1 px-2 text-white rounded-2">
-                        <a href="{{ $medsos->instagram }}" class="text-white" target="_blank"><i class="bi bi-instagram"></i></a>
-                    </div>
-                    @endif
-                    @if($medsos?->youtube)
-                    <div class="wrap py-1 px-2 text-white rounded-2">
-                        <a href="{{ $medsos->youtube }}" class="text-white" target="_blank"><i class="bi bi-youtube"></i></a>
-                    </div>
+                    <a href="{{ $medsos->instagram }}" class="icon instagram" target="_blank"><i class="bi bi-instagram"></i></a>
                     @endif
                     @if($medsos?->tiktok)
-                    <div class="wrap py-1 px-2 text-white rounded-2">
-                        <a href="{{ $medsos->tiktok }}" class="text-white" target="_blank"><i class="bi bi-tiktok"></i></a>
-                    </div>
+                    <a href="{{ $medsos->tiktok }}" class="icon tiktok" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    @endif
+                    @if($medsos?->youtube)
+                    <a href="{{ $medsos->youtube }}" class="icon youtube" target="_blank"><i class="bi bi-youtube"></i></a>
                     @endif
                 </div>
+                @endif
             </div>
-            @endif
+
+            <!-- Informasi -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="footer-title">Informasi</h6>
+                <ul class="footer-links">
+                    <li><a href="{{ route('informasi.prestasi') }}">Prestasi</a></li>
+                    <li><a href="{{ route('informasi.berita') }}">Berita</a></li>
+                    <li><a href="{{ route('profile.akreditasi') }}">Akreditasi</a></li>
+                </ul>
+            </div>
+
+            <!-- Akses Cepat -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="footer-title">Akses Cepat</h6>
+                <ul class="footer-links">
+                    <li><a href="{{ route('beranda.testimoni') }}">Testimoni</a></li>
+                    <li><a href="#">PPDB</a></li>
+                </ul>
+            </div>
+
+
+            <div class="col-lg-4">
+                @if($profil?->embed_maps)
+                <h5 class="footer-title">Lokasi Kami</h5>
+                <div class="maps rounded-4 overflow-hidden">
+                    {!! $profil->embed_maps !!}
+                </div>
+                @endif
+            </div>
         </div>
     </div>
-
-    <!-- Copyright -->
-    <div class="text-center py-3 copyright" style="background-color: #002855; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.9rem;">
-        &copy; 2025 <strong>MTS Muhammadiyah Jayapura</strong>. All rights reserved.
+    <div class="footer-bottom text-center py-3">
+        @if($pengaturan?->tahun_footer)
+        &copy; {{ $pengaturan->tahun_footer}} MTS Muhammadiyah Jayapura. All rights reserved.
+        @else
+        &copy; 2025 MTS Muhammadiyah Jayapura. All rights reserved.
+        @endif
     </div>
 </footer>

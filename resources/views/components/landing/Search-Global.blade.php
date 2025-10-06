@@ -36,7 +36,7 @@
             <div class="row text-start g-5 justify-content-center">
                 @forelse ($berita as $b)
                 <div class="col-lg-4 col-md-6 d-flex mb-4 justify-content-center">
-                    <a href="{{ route('berita.detail', $b->id) }}" class="text-decoration-none text-dark w-100">
+                    <a href="{{ route('informasi.berita.detail', $b->id) }}" class="text-decoration-none text-dark w-100">
                         <div class="card card_berita shadow">
                             <div class="gambar_berita position-relative overflow-hidden">
                                 <img src="{{ asset('storage/' . $b->gambar) }}" class="kartu card-img-top img-fluid" alt="{{ $b->judul }}">
@@ -74,7 +74,7 @@
             <div class="row text-start g-5 justify-content-center ">
                 @forelse ($prestasi as $p)
                 <div class="col-lg-4 col-md-6 d-flex mb-4 justify-content-center">
-                    <a href="{{ route('prestasi.detail', $p->id) }}" class="text-decoration-none text-dark w-100">
+                    <a href="{{ route('informasi.prestasi.detail', $p->id) }}" class="text-decoration-none text-dark w-100">
                         <div class="card card_prestasi shadow ">
                             <div class="gambar_prestasi position-relative overflow-hidden" style="border-radius: 1rem;">
                                 <img src="{{ asset('storage/' . $p->gambar) }}" class="kartu card-img-top img-fluid" alt="{{ $p->judul }}">
@@ -112,7 +112,7 @@
             <div class="row g-5 justify-content-center ">
                 @forelse ($testimoni as $t)
                 <div class="col-md-6">
-                    <a href="{{ route('testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
+                    <a href="{{ route('beranda.testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
                         <div class="card card_testimoni mb-3 rounded-4 shadow border-0 bg-white">
                             <div class="row g-0">
                                 <div class="col-md-4 sampul-gambar media-card text-center rounded-4">
@@ -156,7 +156,7 @@
             <div class="row text-start g-5 justify-content-center">
                 @forelse ($ekskul as $e)
                 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <a href="{{route('ekstrakurikuler.detail', ['id' => $e->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
+                    <a href="{{route('akademik.ekstrakurikuler.detail', ['id' => $e->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
                         <div class="card card_ekskul shadow position-relative overflow-hidden">
                             <div class="gambar_card position-relative overflow-hidden h-60">
                                 <img src="{{ asset('storage/' . $e->gambar) }}" loading="lazy" class="kartu card-img-top img-fluid" alt="gambar 1">
@@ -191,7 +191,7 @@
             <div class="row text-start g-5 justify-content-center">
                 @forelse ($program as $p)
                 <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <a href="{{route('programunggulan.detail', ['id' => $p->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
+                    <a href="{{route('akademik.programunggulan.detail', ['id' => $p->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
                         <div class="card card_program shadow position-relative overflow-hidden">
                             <div class="gambar_card position-relative h-60 overflow-hidden">
                                 <img src="{{ asset('storage/' . $p->gambar) }}" loading="lazy" class="kartu card-img-top img-fluid" alt="gambar 1">

@@ -2,8 +2,8 @@
     <div class="row text-start g-5 justify-content-center">
         @forelse ($ekskul as $e)
         <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-            <a href="{{route('ekstrakurikuler.detail', ['id' => $e->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
-                <div class="card card_ekskul shadow position-relative overflow-hidden">
+            <a href="{{route('akademik.ekstrakurikuler.detail', ['id' => $e->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
+                <div class="card card_ekskul shadow  rounded-4">
                     <div class="gambar_card position-relative h-60 overflow-hidden">
                         <img src="{{ asset('storage/' . $e->gambar) }}" loading="lazy" class="kartu card-img-top img-fluid" alt="gambar 1">
                         <div class="info-overlay text-white h-100 w-100 d-flex flex-column align-items-center justify-content-center">

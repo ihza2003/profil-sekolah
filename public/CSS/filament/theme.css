@@ -1,0 +1,52 @@
+/* Sidebar item default style tweak */
+.fi-sidebar .fi-sidebar-item-button {
+    border-radius: 6px;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+/* Hover state */
+.fi-sidebar .fi-sidebar-item-button:hover {
+    background-color: #0d6efd;
+    /* Bootstrap primary */
+    color: #ffffff !important;
+}
+
+.fi-sidebar .fi-sidebar-item-button:hover .fi-sidebar-item-label,
+.fi-sidebar .fi-sidebar-item-button:hover .fi-sidebar-item-icon {
+    color: #ffffff !important;
+}
+
+/* Active state */
+.fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button {
+    background-color: #0d6efd;
+    /* Bootstrap primary */
+    color: #ffffff !important;
+}
+
+.fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button .fi-sidebar-item-label,
+.fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button .fi-sidebar-item-icon {
+    color: #ffffff !important;
+}
+
+/* Dark mode support */
+.dark .fi-sidebar .fi-sidebar-item-button:hover {
+    background-color: #375a7f;
+    /* Bootstrap dark-primary vibe */
+    color: #ffffff !important;
+}
+
+.dark .fi-sidebar .fi-sidebar-item-button:hover .fi-sidebar-item-label,
+.dark .fi-sidebar .fi-sidebar-item-button:hover .fi-sidebar-item-icon {
+    color: #ffffff !important;
+}
+
+.dark .fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button {
+    background-color: #375a7f;
+    /* tetap primary */
+    color: #ffffff !important;
+}
+
+.dark .fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button .fi-sidebar-item-label,
+.dark .fi-sidebar .fi-sidebar-item.fi-active .fi-sidebar-item-button .fi-sidebar-item-icon {
+    color: #ffffff !important;
+}

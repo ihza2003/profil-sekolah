@@ -16,34 +16,55 @@ main {
     flex: 1;
 }
 
+/* style hero header konten */
+.hero-header {
+    padding: 90px 0;
+    background-position: center 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-header h2 {
+    font-size: 1.7rem !important;
+}
+
+.hero-header .overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+
+/* end style hero header konten */
+
+/* pengaturan navbar */
 .navbar-brand img {
     max-height: 65px;
     width: auto;
 }
 
-/* pengaturan navbar */
 .dropdown-menu .dropdown-item {
     color: #003366 !important;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease;
 }
+
 
 /* Membuat dropdown terbuka saat di-hover */
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
 }
 
-
 .navbar-nav .nav-item .nav-link {
     color: #003366 !important;
-    /* font-size: 1.2rem;
-    letter-spacing: 1px; */
 }
 
 .dropdown-menu .dropdown-item:hover {
     color: #008000 !important;
-    border-bottom: 3px solid #008000;
+    background-color: #f5f5f5;
+    /* background lembut saat hover */
+    border-left: 4px solid #008000;
+    /* aksen di kiri */
 }
 
 .navbar-nav .nav-item .nav-link:hover {
@@ -58,6 +79,14 @@ main {
     /* Mengubah warna teks saat aktif */
     border-bottom: 3px solid #008000;
     /* Menambahkan garis bawah pada item aktif */
+}
+
+.dropdown-menu .dropdown-item.active {
+    color: #008000 !important;
+    background-color: #f5f5f5;
+    /* background lembut saat hover */
+    border-left: 4px solid #008000;
+    /* aksen di kiri */
 }
 
 /* breadcrumb style */
@@ -90,32 +119,82 @@ main {
 /* end style breadcrumb */
 
 /* footer style */
-footer {
+.footer {
     background-color: #003366;
+    font-size: 1rem;
 }
 
-footer .wrap {
-    border: 2px solid #ffffff;
-    transition: border 0.5s ease, transform 0.5s ease;
+.footer-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #ffc107;
 }
 
-footer a {
-    transition: color 0.5s ease;
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-footer .wrap:hover {
-    border: 1px solid #ffc107;
+
+
+.footer-links li {
+    margin-bottom: 0.5rem;
 }
 
-footer a:hover {
-    color: #ffc107 !important;
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+.footer .maps {
+    width: auto;
+    height: 200px;
+    /* atur tinggi sesuai kebutuhan */
+}
+
+.footer .maps iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.footer-links a:hover {
+    color: #ffc107;
+}
+
+.social-icons .icon {
+    display: inline-flex;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.social-icons .icon:hover {
+    background-color: #ffc107;
+    color: #003366;
+    border-color: #ffc107;
+}
+
+.footer-bottom {
+    background-color: #002855;
+    font-size: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 
 /* pengaturan tab search global */
 .modern-tab {
     border: none !important;
     background: #f8f9fa;
-
     padding: 8px 20px;
     font-weight: 600;
     color: #333;
@@ -140,6 +219,10 @@ footer a:hover {
 @media screen and (max-width: 768px) {
     .pencarian {
         width: 100% !important;
+    }
+
+    .hero-header h2 {
+        font-size: 1.4rem !important;
     }
 
 }

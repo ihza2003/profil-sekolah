@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * Class StrukturOrganisasi
+ *
+ * Model untuk data struktur organisasi sekolah.
+ *
+ * @property string $gambar
+ * @property int $admin_id
+ */
+
 class StrukturOrganisasi extends Model
 {
     use HasFactory;
@@ -16,11 +25,17 @@ class StrukturOrganisasi extends Model
         'admin_id',
     ];
 
+    /**
+     * Relasi ke admin yang menginputkan struktur organisasi.
+     */
     public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
 
+    /**
+     * Mengecek dan menghapus file jika ada di storage.
+     */
     protected static function booted()
     {
 

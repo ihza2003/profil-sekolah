@@ -11,10 +11,9 @@
 
 <x-Hero-Header
     title="Organisasi & Ekskul"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Ekstrakulikuler', 'url' => route('ekstrakurikuler')]
+        ['label' => 'Organisasi & Ekskul', 'url' => route('akademik.ekstrakurikuler')]
     ]" />
 
 <x-Ekskul.Konten-Ekskul :ekskul="$ekskul" />

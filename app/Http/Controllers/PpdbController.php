@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PpdbController extends Controller
 {
+    // Menampilkan halaman informasi PPDB
     public function show_informasiPPDB()
     {
         $informasi_ppdb = InformasiPpdb::with('admin')->where('status_aktif', true)->first();
         return view('pages.ppdb.Ppdb', compact('informasi_ppdb'));
     }
 
+    // Menampilkan halaman form PPDB
     public function formPPDB()
     {
         $informasi_ppdb = InformasiPpdb::with('admin')->where('status_aktif', true)->first();
@@ -28,6 +30,7 @@ class PpdbController extends Controller
         return view('pages.ppdb.form_ppdb', compact('informasi_ppdb'));
     }
 
+    // Menyimpan data user saat mengisi form PPDB
     public function store(Request $request)
     {
         $infoAktif = InformasiPpdb::where('status_aktif', true)->first();
@@ -47,7 +50,8 @@ class PpdbController extends Controller
                     'string',
                     'size:16',
                     Rule::unique('form_ppdb', 'nik')
-                        ->where(fn($query) => $query->where('informasi_ppdb_id', $infoAktif->id)),
+                        ->where(fn($query) => $query->where('informasi_ppdb_id', $infoAktif->id)
+                            ->where('status_verifikasi', '!=', 'ditolak')),
                 ],
                 'nisn' => 'required|string',
                 'tempat_lahir' => 'required|string',
@@ -214,6 +218,7 @@ class PpdbController extends Controller
             ->with('no_pendaftaran', $noPendaftaran);
     }
 
+    // Download bukti pendaftaran dalam format PDF
     public function downloadBukti($no_pendaftaran)
     {
         $data = FormPPDB::where('no_pendaftaran', $no_pendaftaran)->firstOrFail();
@@ -222,12 +227,14 @@ class PpdbController extends Controller
         return $pdf->download('bukti-pendaftaran-' . $no_pendaftaran . '.pdf');
     }
 
+    // Menampilkan halaman cek status pendaftaran
     public function cekStatusForm()
     {
         $informasi_ppdb = InformasiPpdb::with('admin')->where('status_aktif', true)->first();
         return view('pages.ppdb.cek-status', compact('informasi_ppdb'));
     }
 
+    // Memproses pengecekan status pendaftaran berdasarkan nomor pendaftaran
     public function cekStatusSubmit(Request $request)
     {
         $request->validate([

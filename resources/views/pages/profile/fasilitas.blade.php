@@ -8,7 +8,6 @@
 @section('content')
 <x-Hero-Header
     title="Fasilitas"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Fasilitas', 'url' => route('profile.fasilitas')]

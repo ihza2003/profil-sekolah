@@ -9,10 +9,9 @@
 @section('content')
 <x-Hero-Header
     title="{{$ekskul->judul}}"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Ekstrakulikuler', 'url' => route('ekstrakurikuler')],
+        ['label' => 'Organisasi & Ekskul', 'url' => route('akademik.ekstrakurikuler')],
         ['label' => $ekskul->judul, 'url' => '#']
     ]" />
 
@@ -52,12 +51,5 @@
         </div>
         @endif
     </div>
-
-    <!-- Tombol Kembali -->
-    <!-- <div class="text-center mt-5">
-        <a href="{{ route('ekstrakurikuler') }}" class="btn btn-outline-primary rounded-pill btn-back px-4 py-2">
-            <i class="bi bi-arrow-left-circle"></i> Kembali
-        </a>
-    </div> -->
 </div>
 @endsection

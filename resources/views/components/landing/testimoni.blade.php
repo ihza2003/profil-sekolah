@@ -3,10 +3,10 @@
     <div class="container mt-5">
         <div class="jdl row justify-content-between mb-2">
             <div class="col-md-6 text-start">
-                <h4 class="fw-bolder">Cerita <span style="color:green;">Kami</span></h4>
+                <h4 class="fw-bolder" style="color: #003366;">Testimoni</h4>
             </div>
             <div class="col-md-6 text-end selengkap">
-                <a href="{{ route('testimoni') }}" class="ket-berita text-decoration-none fw-bolder" style="color: #002855;">
+                <a href="{{ route('beranda.testimoni') }}" class="ket-berita text-decoration-none fw-bolder" style="color: #002855;">
                     <span>Selengkapnya</span>
                     <span class="border rounded">
                         <i class="bi bi-chevron-right"></i>
@@ -20,7 +20,7 @@
             <div class="swiper-wrapper">
                 @foreach ($testimoni as $t)
                 <div class="swiper-slide">
-                    <a href="{{ route('testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
+                    <a href="{{ route('beranda.testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
                         <div class="card shadow border-0" style="max-width: 100%; max-height: 400px;">
                             <div class="card-body">
                                 <p class="card-text text-justify fs-6 text-secondary" style="font-size: 0.95rem;">

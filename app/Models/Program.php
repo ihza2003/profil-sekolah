@@ -6,6 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * Class Program
+ *
+ * Model untuk data program unggulan sekolah.
+ *
+ * @property string $judul
+ * @property string $isi
+ * @property string $gambar
+ * @property string $kategori
+ * @property string|null $gambar_tambahan
+ * @property string|null $gambar_cadangan
+ * @property int $admin_id
+ */
+
 class Program extends Model
 {
     use HasFactory;
@@ -18,15 +32,20 @@ class Program extends Model
         'kategori',
         'gambar_tambahan',
         'gambar_cadangan',
-        'video',
         'admin_id',
     ];
 
+    /**
+     * Relasi ke admin yang menginputkan program unggulan.
+     */
     public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
 
+    /**
+     * Mengecek dan menghapus file jika ada di storage.
+     */
     protected static function booted()
     {
         static::deleting(function ($record) {

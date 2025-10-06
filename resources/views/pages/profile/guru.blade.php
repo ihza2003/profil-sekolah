@@ -8,7 +8,6 @@
 @section('content')
 <x-Hero-Header
     title="Tenaga Pendidik"
-    image="{{ asset('IMG/hero-guru.jpg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Tenaga Pendidik', 'url' => route('profile.guru')]

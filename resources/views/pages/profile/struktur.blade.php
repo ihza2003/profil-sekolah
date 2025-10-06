@@ -9,7 +9,6 @@
 
 <x-Hero-Header
     title="Struktur Organisasi"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Struktur Organisasi', 'url' => route('profile.struktur')]

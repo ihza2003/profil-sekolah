@@ -2,7 +2,7 @@
     <div class="row g-5 justify-content-center">
         @forelse ($testimoni as $t)
         <div class="col-md-6">
-            <a href="{{ route('testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
+            <a href="{{ route('beranda.testimoni.detail', ['id' => $t->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark">
                 <div class="card card_testimoni mb-3 rounded-4 shadow border-0 bg-white ">
                     <div class="row g-0">
                         <div class="col-md-4 sampul-gambar media-card text-center rounded-4">

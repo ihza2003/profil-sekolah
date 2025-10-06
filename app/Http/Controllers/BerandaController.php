@@ -13,6 +13,8 @@ use App\Models\StatistikSekolah;
 
 class BerandaController extends Controller
 {
+
+    // Menampilkan halaman beranda dengan data sambutan, statistik, berita terbaru, dan testimoni
     public function index()
     {
         $sambutan = Sambutan::with('admin')->latest()->first();
@@ -22,9 +24,15 @@ class BerandaController extends Controller
         return view('pages.landing.beranda', compact('beritaTerbaru', 'testimoni', 'sambutan', 'statistik'));
     }
 
+    // Pencarian global di berbagai model seperti Berita, Prestasi, Testimoni, Ekskul, dan Program
     public function global(Request $request)
     {
         $search = $request->input('search');
+
+        // Jika tidak ada kata kunci pencarian, redirect kembali ke beranda
+        if (!$search) {
+            return redirect()->route('beranda');
+        }
 
         $berita = Berita::with('admin')
             ->where('judul', 'LIKE', "%{$search}%")
@@ -65,13 +73,12 @@ class BerandaController extends Controller
             ->withQueryString();
 
         return view(
-            'pages.landing.search-global',
+            'pages.landing.Search-Global',
             compact('search', 'berita', 'prestasi', 'testimoni', 'ekskul', 'program')
         );
     }
 
-
-
+    // Menampilkan detail sambutan berdasarkan ID
     public function showsambutan($id)
     {
         $sambutan = Sambutan::findOrFail($id);

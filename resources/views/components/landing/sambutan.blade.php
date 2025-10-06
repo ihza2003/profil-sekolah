@@ -7,8 +7,8 @@
                     src="{{ $sambutan && $sambutan->foto_kepala_sekolah 
                             ? asset('storage/' . $sambutan->foto_kepala_sekolah) 
                             : asset('IMG/profile.png') }}"
-                    class="img-fluid rounded shadow-sm"
-                    style="height: 350px; width: 300px;"
+                    class="img-fluid rounded-4 shadow-sm"
+                    style="height: 350px; width: auto;"
                     alt="Kepala Sekolah">
             </div>
 

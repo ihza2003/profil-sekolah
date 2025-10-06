@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Medsos;
 use App\Models\Profil;
 use Filament\Support\Assets\Css;
+use App\Models\PengaturanWebsite;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Filament\Support\Facades\FilamentAsset;
@@ -30,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $view->with('profil', Profil::with('admin')->first());
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('pengaturan', PengaturanWebsite::with('admin')->first());
         });
 
         FilamentAsset::register([

@@ -10,6 +10,7 @@
     <h2 class="fw-bold">Penerimaan Peserta Didik Baru (PPDB)</h2>
     @if ($informasi_ppdb && $informasi_ppdb->status_aktif)
     <h3 class="fw-light">Tahun Ajaran {{ $informasi_ppdb->tahun }}</h3>
+
     @endif
     <p class="lead">Bergabunglah bersama keluarga besar sekolah kami!</p>
 </div>
@@ -18,13 +19,15 @@
     @if ($informasi_ppdb && $informasi_ppdb->status_aktif)
     <div class="row g-4">
         <div class="col-md-12">
-            <img src="{{ asset('storage/' . $informasi_ppdb->banner_ppdb) }}" alt="brosur ppdb" class="img-fluid banner-ppdb shadow mb-4 w-100 rounded-4" data-aos="fade-up">
+            <img src="{{ asset('storage/' . $informasi_ppdb->banner_ppdb) }}" alt="brosur ppdb"
+                class="img-fluid banner-ppdb shadow mb-4 w-100 rounded-4" data-aos="fade-up">
         </div>
 
-        <div class="col-md-6">
-            <div class="ppdb-info-box shadow-sm" data-aos="fade-up">
+        {{-- SYARAT & JADWAL --}}
+        <div class="col-md-6 d-flex">
+            <div class="ppdb-info-box shadow-sm flex-fill d-flex flex-column" data-aos="fade-up">
                 <h4 class="fw-bold mb-3">Syarat Pendaftaran</h4>
-                <ol class="ps-3">
+                <ol class="ps-3 flex-grow-1">
                     @foreach ($informasi_ppdb->syarat_pendaftaran as $syarat)
                     <li>{{ $syarat }}</li>
                     @endforeach
@@ -32,37 +35,43 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="ppdb-info-box shadow-sm" data-aos="fade-up">
+        <div class="col-md-6 d-flex">
+            <div class="ppdb-info-box shadow-sm flex-fill d-flex flex-column" data-aos="fade-up">
                 <h4 class="fw-bold mb-3">Jadwal Pendaftaran</h4>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled flex-grow-1">
                     <li>
                         📅 Pendaftaran:
-                        {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_mulai))->translatedFormat("d F Y") }}
+                        {{ \Carbon\Carbon::parse($informasi_ppdb->tanggal_mulai)->translatedFormat("d F Y") }}
                         –
-                        {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_selesai))->translatedFormat("d F Y") }}
+                        {{ \Carbon\Carbon::parse($informasi_ppdb->tanggal_selesai)->translatedFormat("d F Y") }}
                     </li>
 
                     @if($informasi_ppdb->tanggal_pengumuman)
                     <li>
                         📢 Pengumuman:
-                        {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_pengumuman))->translatedFormat("d F Y") }}
+                        {{ \Carbon\Carbon::parse($informasi_ppdb->tanggal_pengumuman)->translatedFormat("d F Y") }}
                     </li>
                     @endif
 
                     @if($informasi_ppdb->tanggal_daftar_ulang_mulai && $informasi_ppdb->tanggal_daftar_ulang_selesai)
                     <li>
                         📌 Daftar Ulang:
-                        {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_daftar_ulang_mulai))->translatedFormat("d F Y") }}
+                        {{ \Carbon\Carbon::parse($informasi_ppdb->tanggal_daftar_ulang_mulai)->translatedFormat("d F Y") }}
                         –
-                        {{ (\Carbon\Carbon::parse($informasi_ppdb->tanggal_daftar_ulang_selesai))->translatedFormat("d F Y") }}
+                        {{ \Carbon\Carbon::parse($informasi_ppdb->tanggal_daftar_ulang_selesai)->translatedFormat("d F Y") }}
                     </li>
                     @endif
-
                 </ul>
+
+                {{-- info kuota di bawah --}}
+                <div class="alert alert-info mt-3 small rounded-3 shadow-sm">
+                    <i class="bi bi-info-circle"></i>
+                    Pendaftaran PPDB Online akan <strong>ditutup</strong> jika telah memenuhi kuota.
+                </div>
             </div>
         </div>
 
+        {{-- PROSEDUR --}}
         <div class="col-md-12">
             <div class="ppdb-info-box shadow-sm" data-aos="fade-up">
                 <h4 class="fw-bold mb-3">Prosedur Pendaftaran</h4>
@@ -74,6 +83,7 @@
             </div>
         </div>
 
+        {{-- KONTAK --}}
         <div class="col-md-12">
             <div class="ppdb-info-box shadow-sm text-center" data-aos="fade-up">
                 <h4 class="fw-bold mb-3">Informasi Kontak</h4>
@@ -81,9 +91,7 @@
 
                 @if($informasi_ppdb->jam_operasional_hari || $informasi_ppdb->jam_operasional_jam)
                 <div class="mt-4">
-                    <h6 class="fw-bold">
-                        🕒 Jam Operasional
-                    </h6>
+                    <h6 class="fw-bold">🕒 Jam Operasional</h6>
                     <p class="mb-0 text-muted">
                         {{ $informasi_ppdb->jam_operasional_hari ?? '-' }}
                         @if($informasi_ppdb->jam_operasional_jam)
@@ -92,28 +100,30 @@
                     </p>
                 </div>
                 @endif
-                <a href="https://wa.me/{{ $informasi_ppdb->kontak_wa }}" target="_blank" class="btn cta-btn-wa mt-3 px-4 py-2">
+                <a href="https://wa.me/{{ $informasi_ppdb->kontak_wa }}" target="_blank"
+                    class="btn cta-btn-wa mt-3 px-4 py-2">
                     Hubungi via WhatsApp
                 </a>
             </div>
         </div>
 
+        {{-- CTA DAFTAR --}}
         <div class="col-md-12">
             <div class="ppdb-info-box shadow-sm text-center py-5" data-aos="fade-up">
                 <h4 class="fw-bold mb-3 text-primary">Ayo Daftar Sekarang!</h4>
-                <p class="mb-4">Jangan lewatkan kesempatan bergabung dengan sekolah kami. Segera isi formulir pendaftaran atau cek status pendaftaranmu.</p>
+                <p class="mb-4">Jangan lewatkan kesempatan bergabung dengan sekolah kami.
+                    Segera isi formulir pendaftaran atau cek status pendaftaranmu.</p>
 
                 <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="{{ route('ppdb.form') }}" class="btn btn-outline-success px-4 py-2">
+                    <a href="{{ route('ppdb.form') }}" class="btn btn-outline-success btn-lg px-4 py-2">
                         📄 Isi Formulir Pendaftaran
                     </a>
-                    <a href="{{ route('ppdb.cek.form') }}" class="btn btn-outline-primary px-4 py-2">
+                    <a href="{{ route('ppdb.cek.form') }}" class="btn btn-outline-primary btn-lg px-4 py-2">
                         🔍 Cek Status Pendaftaran
                     </a>
                 </div>
             </div>
         </div>
-
     </div>
     @else
     <div class="alert alert-warning text-center mt-5 rounded-4" role="alert" data-aos="fade-up">
@@ -122,4 +132,5 @@
     </div>
     @endif
 </div>
+
 @endsection

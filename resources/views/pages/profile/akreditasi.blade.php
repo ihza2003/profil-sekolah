@@ -9,7 +9,6 @@
 
 <x-Hero-Header
     title="Sertifikat Akreditasi"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Sertifikat Akreditasi', 'url' => route('profile.akreditasi')]

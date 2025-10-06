@@ -114,7 +114,6 @@ class BeritaResource extends Resource
                 Tables\Columns\TextColumn::make('judul')
                     ->label('Judul')
                     ->searchable()
-                    ->sortable()
                     ->wrap()
                     ->toggleable()
                     ->limit(30),
@@ -141,10 +140,12 @@ class BeritaResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->toggleable()
+                    ->sortable()
                     ->dateTime('d M Y - H:i'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Diperbarui Pada')
                     ->toggleable()
+                    ->sortable()
                     ->dateTime('d M Y - H:i'),
             ])
             ->filters([

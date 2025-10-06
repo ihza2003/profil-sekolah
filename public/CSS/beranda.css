@@ -15,28 +15,11 @@
 
 /* end style hero landing */
 
-/* style hero */
-.hero-header {
-    padding: 90px 0;
-    background-position: center 30%;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.hero-header .overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1;
-}
-
-/* end style hero */
-
-.z-2 {
-    z-index: 2;
-}
 
 /* style count overview */
 .bg-gradient {
-    background: linear-gradient(135deg, #007bff, #00c6ff, #007bff) !important;
+    background: linear-gradient(135deg, #0056b3, #00b4db, #0083b0) !important;
+    /* warna biru lebih modern */
 }
 
 /* end style count overview */
@@ -50,16 +33,6 @@
 
 .section-title {
     color: #003366 !important;
-}
-
-.hero-image {
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.3s ease-in-out;
-}
-
-.hero-image:hover {
-    transform: scale(1.03);
 }
 
 .content-paragraph {
@@ -106,7 +79,7 @@
 
 /* end style detail sambutan kepsek */
 
-/* style global card */
+/* style global card beranda*/
 .card {
     border-radius: 1rem;
 }

@@ -9,16 +9,12 @@
 @section('content')
 <x-Hero-Header
     title="Kontak Kami"
-    image="{{ asset('IMG/landing2.jpeg') }} "
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Konta Kami', 'url' => route('kontak')]
     ]" />
 <div class="kontak-section py-5 bg-light">
     <div class="container">
-        <!-- <div class="text-center judul mb-5">
-            <h2 class="fw-bold fs-2 single-underline">Hubungi Kami</h2>
-        </div> -->
         <div class="row g-4 justify-content-center">
             <!-- Denah Lokasi -->
             <div class="col-lg-6" data-aos="fade-up">

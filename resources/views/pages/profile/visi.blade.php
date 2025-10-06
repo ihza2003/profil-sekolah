@@ -9,7 +9,6 @@
 
 <x-Hero-Header
     title="Visi & Misi"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Visi & Misi', 'url' => route('profile.visi')]

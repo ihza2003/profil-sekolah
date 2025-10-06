@@ -11,10 +11,9 @@
 
 <x-Hero-Header
     title="Galeri"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Galeri', 'url' => route('galeri')]
+        ['label' => 'Galeri', 'url' => route('informasi.galeri')]
     ]" />
 
 <x-Galeri.Konten-Galeri :galeri="$galeri" />

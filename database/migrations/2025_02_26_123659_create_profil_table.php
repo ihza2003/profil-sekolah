@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('alamat');
-            $table->string('telepon')->nullable();
-            $table->string('email')->nullable();
+            $table->string('telepon');
+            $table->string('email');
             $table->string('logo');
-            $table->longText('embed_maps')->nullable();
+            $table->string('tagline')->nullable();
+            $table->string('nsm');
+            $table->string('npsn');
+            $table->longText('embed_maps');
             $table->foreignId('admin_id')->nullable()->constrained('admins')->nullOnDelete();
             $table->timestamps();
         });

@@ -80,6 +80,39 @@
                 }
             }
         });
+
+        function animateCount(el) {
+            const target = +el.getAttribute('data-count');
+            let count = 0;
+            const duration = 2000; // ms, animasi total
+            const intervalTime = 30; // ms
+            const totalSteps = Math.ceil(duration / intervalTime);
+            const step = target / totalSteps;
+
+            let interval = setInterval(() => {
+                count += step;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
+                el.textContent = Math.floor(count);
+            }, intervalTime);
+        }
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    animateCount(el);
+                    obs.unobserve(el);
+                }
+            });
+        }, {
+            threshold: 0.5
+        }); // 0.5 berarti setengah elemen kelihatan baru jalan
+
+        document.querySelectorAll('[data-count]').forEach(el => {
+            observer.observe(el);
+        });
     </script>
     @stack('scripts')
 </body>

@@ -70,7 +70,8 @@ class FormPPDBResource extends Resource
 
                                 return [
                                     Rule::unique('form_ppdb', 'nik')
-                                        ->where(fn($query) => $query->where('informasi_ppdb_id', $infoAktif?->id))
+                                        ->where(fn($query) => $query->where('informasi_ppdb_id', $infoAktif?->id)
+                                            ->where('status_verifikasi', '!=', 'ditolak'))
                                         ->ignore($record?->id),
                                 ];
                             })
@@ -455,6 +456,14 @@ class FormPPDBResource extends Resource
                     ->wrap()
                     ->sortable(),
 
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable()
+                    ->wrap()
+                    ->copyable()
+                    ->limit(20),
+
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Lengkap')
                     ->searchable()
@@ -526,6 +535,12 @@ class FormPPDBResource extends Resource
                     ->successNotificationTitle('Data berhasil Di update')
                     ->color('success'),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('download_bukti')
+                    ->label('Download Bukti')
+                    ->color('primary')
+                    ->icon('heroicon-s-arrow-down-tray')
+                    ->url(fn($record) => route('ppdb.download', $record->no_pendaftaran))
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

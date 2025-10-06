@@ -43,6 +43,7 @@ class StrukturResource extends Resource
                     ->imagePreviewHeight('150')
                     ->maxSize(5120)
                     ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file))
                     ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
                         return 'Struktur' . '-' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
                     }),
@@ -76,7 +77,6 @@ class StrukturResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->successNotificationTitle('Data berhasil Di update')
                     ->color('success'),
-                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

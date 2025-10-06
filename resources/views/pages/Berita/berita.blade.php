@@ -8,12 +8,11 @@
 @section('content')
 <x-Hero-Header
     title="Berita"
-    image="{{ asset('IMG/header-fitur.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Berita', 'url' => route('berita')]
+        ['label' => 'Berita', 'url' => route('informasi.berita')]
     ]" />
-<x-Search-ui route="{{ route('berita.search') }}" />
+<x-Search-ui route="{{ route('informasi.berita.search') }}" />
 <x-berita.Konten-berita :berita="$berita" />
 
 @endsection

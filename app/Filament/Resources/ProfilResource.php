@@ -57,9 +57,27 @@ class ProfilResource extends Resource
                     ->required()
                     ->maxLength(255),
 
+                Forms\Components\TextInput::make('nsm')
+                    ->label('Nomor Statistik Madrasah (NSM)')
+                    ->placeholder('12129xxx')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('npsn')
+                    ->label('Nomor Pokok Sekolah Nasional (NPSN)')
+                    ->placeholder('607xxx')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('tagline')
+                    ->label('Tagline Sekolah')
+                    ->placeholder('Masukan tagline Sekolah')
+                    ->maxLength(255),
+
                 Forms\Components\Textarea::make('embed_maps')
                     ->label('Maps Sekolah')
                     ->rows(3)
+                    ->required()
                     ->placeholder('<iframe src="https://www.google.com/maps/embed?..."></iframe>')
                     ->helperText('klik "Bagikan" → "Sematkan peta", Salin kode <iframe> dari Google Maps -> lalu tempel di sini.')
                     ->maxLength(1000),
@@ -111,6 +129,24 @@ class ProfilResource extends Resource
 
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')
+                    ->sortable()
+                    ->toggleable()
+                    ->wrap(),
+
+                Tables\Columns\TextColumn::make('nsm')
+                    ->label('NSM')
+                    ->sortable()
+                    ->toggleable()
+                    ->wrap(),
+
+                Tables\Columns\TextColumn::make('npsn')
+                    ->label('NPSN')
+                    ->sortable()
+                    ->toggleable()
+                    ->wrap(),
+
+                Tables\Columns\TextColumn::make('tagline')
+                    ->label('tagline Sekolah')
                     ->sortable()
                     ->toggleable()
                     ->wrap(),

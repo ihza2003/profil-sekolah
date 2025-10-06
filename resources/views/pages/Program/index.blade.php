@@ -11,10 +11,9 @@
 
 <x-Hero-Header
     title="Program Unggulan"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Program Unggulan', 'url' => route('programunggulan')]
+        ['label' => 'Program Unggulan', 'url' => route('akademik.programunggulan')]
     ]" />
 
 <x-program.Konten-program :program="$program" />

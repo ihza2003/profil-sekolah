@@ -2,7 +2,7 @@
     <div class="row text-start g-5 justify-content-center">
         @forelse ($program as $p)
         <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-            <a href="{{route('programunggulan.detail', ['id' => $p->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
+            <a href="{{route('akademik.programunggulan.detail', ['id' => $p->id])}} ?page={{ request('page')}}" class="text-decoration-none text-dark ">
                 <div class="card card_program shadow position-relative overflow-hidden">
                     <div class="gambar_card position-relative h-60 overflow-hidden">
                         <img src="{{ asset('storage/' . $p->gambar) }}" loading="lazy" class="kartu card-img-top img-fluid" alt="gambar 1">

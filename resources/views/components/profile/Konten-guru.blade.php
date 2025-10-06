@@ -43,7 +43,7 @@
                             <!-- Mapel -->
                             @if($g?->mapel->isNotEmpty())
                             <div class="card-text mb-2">
-                                <strong class="me-2">Keahlian</strong>
+                                <strong class="me-2">Mata Pelajaran</strong>
                                 <div class="d-flex flex-wrap gap-2 mt-2">
                                     @foreach($g->mapel as $mapel)
                                     <span class="badge rounded-pill shadow text-white border">

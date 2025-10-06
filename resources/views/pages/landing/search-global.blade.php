@@ -12,7 +12,6 @@
 @section('content')
 <x-Hero-Header
     :title="'Hasil pencarian: ' . $search"
-    image="{{ asset('IMG/landing2.jpeg') }}"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
         ['label' => 'Pencarian', 'url' => route('search.global')],

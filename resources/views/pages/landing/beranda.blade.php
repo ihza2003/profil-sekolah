@@ -9,10 +9,10 @@
 @section('content')
 
 <x-landing.Hero-landing />
-<x-landing.sambutan :sambutan='$sambutan' />
-<x-landing.statistik :statistik='$statistik' />
-<x-landing.berita_beranda :beritaTerbaru='$beritaTerbaru' />
-<x-landing.tentang_kami />
-<x-landing.testimoni :testimoni='$testimoni' />
+<x-landing.Sambutan :sambutan='$sambutan' />
+<x-landing.Statistik :statistik='$statistik' />
+<x-landing.Berita_beranda :beritaTerbaru='$beritaTerbaru' />
+<x-landing.Tentang_kami />
+<x-landing.Testimoni :testimoni='$testimoni' />
 
 @endsection

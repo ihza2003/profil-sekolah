@@ -14,21 +14,21 @@
                     <!-- Peserta Didik -->
                     <div class="col-md-3 col-6 mb-4 mb-md-0">
                         <i class="bi bi-people-fill fs-1 mb-2"></i>
-                        <h3 class="fw-bold mb-0">{{ $statistik->jumlah_siswa ?? 0 }}</h3>
-                        <small class="fw-semibold">Peserta Didik</small>
+                        <h3 class="fw-bold mb-0" data-count="{{ $statistik->jumlah_siswa ?? 0 }}">0</h3>
+                        <small class=" fw-semibold">Peserta Didik</small>
                     </div>
 
                     <!-- Kelas Rombel -->
                     <div class="col-md-3 col-6">
                         <i class="bi bi-building fs-1 mb-2"></i>
-                        <h3 class="fw-bold mb-0">{{ $statistik->jumlah_kelas ?? 0 }}</h3>
+                        <h3 class="fw-bold mb-0" data-count="{{ $statistik->jumlah_kelas ?? 0 }}">0</h3>
                         <small class="fw-semibold">Rombel kelas</small>
                     </div>
 
                     <!-- Guru Tendik -->
                     <div class="col-md-3 col-6">
                         <i class="bi bi-person-workspace fs-1 mb-2"></i>
-                        <h3 class="fw-bold mb-0">{{ $statistik->jumlah_guru ?? 0 }}</h3>
+                        <h3 class="fw-bold mb-0" data-count="{{ $statistik->jumlah_guru ?? 0}}">0</h3>
                         <small class="fw-semibold">Guru</small>
                     </div>
                 </div>
