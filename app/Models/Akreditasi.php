@@ -48,5 +48,14 @@ class Akreditasi extends Model
                 }
             }
         });
+
+        static::updating(function ($record) {
+            if ($record->isDirty('gambar')) { // field gambar berubah
+                $original = $record->getOriginal('gambar');
+                if ($original && Storage::disk('public')->exists($original)) {
+                    Storage::disk('public')->delete($original);
+                }
+            }
+        });
     }
 }

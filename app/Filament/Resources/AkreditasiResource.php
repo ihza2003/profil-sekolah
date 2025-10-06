@@ -45,8 +45,7 @@ class AkreditasiResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
                     ->getUploadedFileNameForStorageUsing(function ($file, $livewire) {
                         return 'Akreditasi' . '-' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
-                    })
-                    ->deleteUploadedFileUsing(fn($file) => $file && \Storage::disk('public')->delete($file)),
+                    }),
 
                 Forms\Components\Hidden::make('admin_id')
                     ->default(fn() => auth('admin')->id()),
