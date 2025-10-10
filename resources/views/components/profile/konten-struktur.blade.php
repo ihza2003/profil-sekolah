@@ -5,7 +5,7 @@
         <h5 class="text-muted my-3">Belum ada Konten yang ditampilkan</h5>
     </div>
     @else
-    <div class="struktur d-flex justify-content-center" data-aos="fade-down">
+    <div class="struktur d-flex justify-content-center">
         <a href="{{ asset('storage/' . $struktur->gambar) }}">
             <img src="{{ asset('storage/' . $struktur->gambar) }}" alt="Struktur Organisasi Sekolah"
                 class="img-fluid struktur-img shadow rounded-4">

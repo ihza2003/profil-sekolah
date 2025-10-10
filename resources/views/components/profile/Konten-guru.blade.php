@@ -1,6 +1,6 @@
-<section class="container konten my-5" data-aos="fade-down">
+<section class="container konten my-5">
     <div class="row g-5 justify-content-center ">
-        @forelse ($gurus as $g)
+        @forelse ($guru as $g)
         <div class="col-md-6">
             <div class="card card_guru mb-3 rounded-4 shadow border-0 bg-white">
                 <div class="row g-0">
@@ -17,22 +17,14 @@
                                 {{ $g->nama }}
                             </h5>
 
-                            <!-- NIP -->
-                            <!-- @if($g?->nip)
-                            <p class="text-muted mb-2">
-                                <strong class="me-2">NIP :</strong> {{ $g?->nip }}
-                            </p>
-                            @endif -->
                             <p class="text-muted mb-2">
                                 <strong class="me-2">NIP : </strong> {{ $g?->nip }}
                             </p>
 
-                            <!-- Email -->
-                            @if($g?->email)
+
                             <p class="mb-2">
                                 <strong>Email :</strong> {{ $g->email }}
                             </p>
-                            @endif
 
                             <!-- Pendidikan -->
                             <p class="text-success d-flex align-items-center mb-2">
@@ -61,12 +53,13 @@
         </div>
         @empty
         @if (request('search'))
-        <div class="text-center text-muted mt-4">
-            <i class="bi bi-search"></i> Tidak ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
+        <div class="alert alert-warning text-center rounded-4 mt-5 " role="alert">
+            <i class="bi bi-info-circle me-2"></i> Tidak ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
         </div>
         @else
-        <div class="text-center text-muted mt-4">
-            Belum ada guru yang ditampilkan.
+        <div class="alert alert-warning text-center rounded-4 mt-5" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <h5 class="text-muted my-3">Belum ada guru yang ditampilkan</h5>
         </div>
         @endif
         @endforelse
@@ -74,12 +67,12 @@
 
     <!-- Pagination -->
     <div class="mt-5 mb-3 d-flex justify-content-center">
-        {{ $gurus->links('pagination::bootstrap-5') }}
+        {{ $guru->links('pagination::bootstrap-5') }}
     </div>
 </section>
 <!-- <section class="container konten my-5">
     <div class="row g-5 justify-content-center">
-        @forelse($gurus as $g)
+        @forelse($guru as $g)
         <div class="col-lg-3 col-md-6 my-3 justify-content-center d-flex">
             <div class="card-guru shadow position-relative rounded-3">
                 <img src="{{ asset('storage/' . $g->foto) }}" class="img-fluid h-100 w-100" alt="Foto Guru">
@@ -113,6 +106,6 @@
     </div>
 
 <div class="mt-5 mb-3 d-flex justify-content-center">
-    {{ $gurus->links('pagination::bootstrap-5') }}
+    {{ $guru->links('pagination::bootstrap-5') }}
 </div>
 </section> -->

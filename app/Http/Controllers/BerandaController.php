@@ -3,18 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
-use App\Models\Ekskul;
-use App\Models\Program;
-use App\Models\Prestasi;
 use App\Models\Sambutan;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use App\Models\StatistikSekolah;
 
+
 class BerandaController extends Controller
 {
 
-    // Menampilkan halaman beranda dengan data sambutan, statistik, berita terbaru, dan testimoni
+    /**
+     * Menampilkan halaman beranda utama website.
+     *
+     * Fungsi ini mengambil data dari beberapa model:
+     * - Sambutan terbaru dari kepala sekolah atau admin.
+     * - Statistik sekolah (jumlah guru, siswa, dll).
+     * - Tiga berita terbaru.
+     * - Enam testimoni terbaru.
+     *
+     * Semua data tersebut kemudian diteruskan ke tampilan `pages.landing.beranda`.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $sambutan = Sambutan::with('admin')->latest()->first();
@@ -24,61 +34,18 @@ class BerandaController extends Controller
         return view('pages.landing.beranda', compact('beritaTerbaru', 'testimoni', 'sambutan', 'statistik'));
     }
 
-    // Pencarian global di berbagai model seperti Berita, Prestasi, Testimoni, Ekskul, dan Program
-    public function global(Request $request)
-    {
-        $search = $request->input('search');
-
-        // Jika tidak ada kata kunci pencarian, redirect kembali ke beranda
-        if (!$search) {
-            return redirect()->route('beranda');
-        }
-
-        $berita = Berita::with('admin')
-            ->where('judul', 'LIKE', "%{$search}%")
-            ->orWhere('isi', 'LIKE', "%{$search}%")
-            ->latest()
-            ->paginate(6, ['*'], 'berita_page')
-            ->withQueryString();
-
-        $prestasi = Prestasi::with('admin')
-            ->where('judul', 'LIKE', "%{$search}%")
-            ->orWhere('isi', 'LIKE', "%{$search}%")
-            ->latest()
-            ->paginate(6, ['*'], 'prestasi_page')
-            ->withQueryString();
-
-        $testimoni = Testimoni::with('admin')
-            ->where('nama', 'LIKE', "%{$search}%")
-            ->orWhere('status', 'LIKE', "%{$search}%")
-            ->orWhere('posisi', 'LIKE', "%{$search}%")
-            ->latest()
-            ->paginate(6, ['*'], 'testimoni_page')
-            ->withQueryString();
-
-        $ekskul = Ekskul::with('admin')
-            ->where('judul', 'LIKE', "%{$search}%")
-            ->orWhere('isi', 'LIKE', "%{$search}%")
-            ->orwhere('kategori', 'LIKE', "%{$search}%")
-            ->latest()
-            ->paginate(6, ['*'], 'ekskul_page')
-            ->withQueryString();
-
-        $program = Program::with('admin')
-            ->where('judul', 'LIKE', "%{$search}%")
-            ->orWhere('isi', 'LIKE', "%{$search}%")
-            ->orwhere('kategori', 'LIKE', "%{$search}%")
-            ->latest()
-            ->paginate(6, ['*'], 'program_page')
-            ->withQueryString();
-
-        return view(
-            'pages.landing.search-global',
-            compact('search', 'berita', 'prestasi', 'testimoni', 'ekskul', 'program')
-        );
-    }
-
-    // Menampilkan detail sambutan berdasarkan ID
+    /**
+     * Menampilkan detail sambutan berdasarkan ID.
+     *
+     * Fungsi ini digunakan untuk menampilkan satu sambutan tertentu
+     * berdasarkan ID yang diberikan pada parameter. Jika ID tidak ditemukan,
+     * maka akan menampilkan error 404 (ModelNotFoundException).
+     *
+     * @param  int  $id  ID dari sambutan yang ingin ditampilkan.
+     * @return \Illuminate\View\View
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
     public function showsambutan($id)
     {
         $sambutan = Sambutan::findOrFail($id);

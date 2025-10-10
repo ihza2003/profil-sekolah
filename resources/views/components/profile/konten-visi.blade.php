@@ -1,4 +1,4 @@
-<section class="container konten mt-4 mb-5" data-aos="fade-down">
+<section class="container konten mt-4 mb-5">
     @if($visi?->sejarah)
     <div class="sejarah">
         <div class="isi-konten fs-6">{!!$visi->sejarah!!}</div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tenaga Pendidik')
+@section('title', 'Guru Kami')
 
 @push('styles')
 <link href="{{ asset('CSS/profil.css') }}" rel="stylesheet">
@@ -7,12 +7,12 @@
 
 @section('content')
 <x-Hero-Header
-    title="Tenaga Pendidik"
+    title="Guru Kami"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Tenaga Pendidik', 'url' => route('profile.guru')]
+        ['label' => 'Guru Kami', 'url' => route('profile.guru')]
     ]" />
-<x-Search-ui route="{{ route('guru.search') }}" />
-<x-profile.Konten-guru :gurus="$gurus" />
+<x-Search-ui route="{{ route('profile.guru.search') }}" />
+<x-profile.Konten-guru :guru="$guru" />
 
 @endsection

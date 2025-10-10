@@ -117,9 +117,14 @@ class InformasippdbResource extends Resource
 
                 Forms\Components\TextInput::make('kontak_wa')
                     ->required()
-                    ->placeholder('Contoh: 62xxxx')
+                    ->placeholder('Masukan Dengan Awal +62xxxx')
                     ->label('Kontak WhatsApp')
-                    ->tel(),
+                    ->tel()
+                    ->rule('regex:/^\+62[0-9]{8,15}$/')
+                    ->validationMessages([
+                        'regex' => 'Kontak WhatsApp harus dimulai dengan +62 dan diikuti angka yang valid.',
+                        'required' => 'Kontak WhatsApp wajib diisi.',
+                    ]),
 
                 Forms\Components\TextInput::make('gelombang')
                     ->label('Gelombang')

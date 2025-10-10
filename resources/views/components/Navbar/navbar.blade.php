@@ -31,8 +31,9 @@
                                 href="{{ route('profile.akreditasi') }}">Sertifikat Akreditasi Madrasah</a></li>
                         <li><a class="dropdown-item {{ Request::routeIs('profile.fasilitas') ? 'active' : '' }}"
                                 href="{{ route('profile.fasilitas') }}">Fasilitas</a></li>
-                        <li><a class="dropdown-item {{ Request::routeIs('profile.guru') ? 'active' : '' }}"
-                                href="{{ route('profile.guru') }}">Tenaga Pendidik</a></li>
+                        <li><a class="dropdown-item {{ Request::routeIs('profile.guru') ? 'active' : '' }}
+                        {{ Request::routeIs('profile.guru.search') ? 'active' : '' }}"
+                                href="{{ route('profile.guru') }}">Guru</a></li>
                     </ul>
                 </li>
 
@@ -55,8 +56,13 @@
                         Informasi
                     </a>
                     <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item {{ Request::routeIs('informasi.berita') ? 'active' : '' }}   {{ Request::routeIs('informasi.berita.detail') ? 'active' : '' }}" href=" {{ route('informasi.berita') }}">Berita</a></li>
-                        <li><a class="dropdown-item {{ Request::routeIs('informasi.prestasi') ? 'active' : '' }} {{ Request::routeIs('informasi.prestasi.detail') ? 'active' : ''}}" href="{{ route('informasi.prestasi') }}">Prestasi</a></li>
+                        <li><a class="dropdown-item {{ Request::routeIs('informasi.berita') ? 'active' : '' }}
+                        {{ Request::routeIs('informasi.berita.detail') ? 'active' : '' }}
+                        {{ Request::routeIs('informasi.berita.search') ? 'active' : '' }} "
+                                href=" {{ route('informasi.berita') }}">Berita</a></li>
+                        <li><a class="dropdown-item {{ Request::routeIs('informasi.prestasi') ? 'active' : '' }} 
+                        {{ Request::routeIs('informasi.prestasi.detail') ? 'active' : ''}}
+                        {{ Request::routeIs('informasi.prestasi.search') ? 'active' : '' }} " href="{{ route('informasi.prestasi') }}">Prestasi</a></li>
                         <li><a class="dropdown-item {{ Request::routeIs('informasi.galeri') ? 'active' : '' }}" href="{{ route('informasi.galeri') }}">Galeri</a></li>
                     </ul>
                 </li>

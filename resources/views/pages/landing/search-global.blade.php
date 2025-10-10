@@ -7,6 +7,8 @@
 <link href="{{ asset('CSS/cerita.css') }}" rel="stylesheet">
 <link href="{{ asset('CSS/ekskul.css') }}" rel="stylesheet">
 <link href="{{ asset('CSS/program.css') }}" rel="stylesheet">
+<link href="{{ asset('CSS/profil.css') }}" rel="stylesheet">
+<link href="{{ asset('CSS/geleri.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -14,7 +16,7 @@
     :title="'Hasil pencarian: ' . $search"
     :breadcrumb="[
         ['label' => 'Beranda', 'url' => route('beranda')],
-        ['label' => 'Pencarian', 'url' => route('search.global')],
+        ['label' => 'Pencarian', 'url' => route('beranda.search.global')],
     ]" />
 <x-landing.Search-Global
     :search='$search'
@@ -22,5 +24,7 @@
     :prestasi='$prestasi'
     :testimoni='$testimoni'
     :ekskul="$ekskul"
-    :program="$program" />
+    :program="$program"
+    :guru="$guru"
+    :galeri="$galeri" />
 @endsection

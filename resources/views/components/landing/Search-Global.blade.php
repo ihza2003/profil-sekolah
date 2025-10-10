@@ -17,13 +17,24 @@
             </button>
         </li>
         <li class="nav-item mx-2 my-2">
+            <button class="nav-link modern-tab rounded-pill" data-bs-toggle="tab" data-bs-target="#guru" type="button">
+                <i class="bi-mortarboard-fill me-1"></i> Guru
+            </button>
+        </li>
+        <li class="nav-item mx-2 my-2">
+            <button class="nav-link modern-tab rounded-pill" data-bs-toggle="tab" data-bs-target="#galeri" type="button">
+                <i class="bi-image me-1"></i> Galeri
+            </button>
+        </li>
+
+        <li class="nav-item mx-2 my-2">
             <button class="nav-link modern-tab rounded-pill" data-bs-toggle="tab" data-bs-target="#ekskul" type="button">
                 <i class="bi bi-people me-1"></i> Ekstrakurikuler
             </button>
         </li>
         <li class="nav-item mx-2 my-2">
             <button class="nav-link modern-tab rounded-pill" data-bs-toggle="tab" data-bs-target="#program" type="button">
-                <i class="bi bi-stars me-1"></i> Program Unggulan
+                <i class="bi bi-lightbulb me-1"></i> Program Unggulan
             </button>
         </li>
     </ul>
@@ -35,7 +46,7 @@
         <div class="tab-pane fade show active" id="berita">
             <div class="row text-start g-5 justify-content-center">
                 @forelse ($berita as $b)
-                <div class="col-lg-4 col-md-6 d-flex mb-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex mb-5 justify-content-center">
                     <a href="{{ route('informasi.berita.detail', $b->id) }}" class="text-decoration-none text-dark w-100">
                         <div class="card card_berita shadow">
                             <div class="gambar_berita position-relative overflow-hidden">
@@ -61,7 +72,10 @@
                     </a>
                 </div>
                 @empty
-                <div class="text-center text-muted mt-5">Tidak ada berita ditemukan.</div>
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian berita tidak ditemukan. Coba kata kunci lain.
+                </div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center mt-4">
@@ -99,7 +113,10 @@
                     </a>
                 </div>
                 @empty
-                <div class="text-center text-muted  mt-5">Tidak ada prestasi ditemukan.</div>
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian prestasi tidak ditemukan. Coba kata kunci lain.
+                </div>
                 @endforelse
             </div>
             <div class="d-flex justify-content-center mt-4">
@@ -141,8 +158,9 @@
                     </a>
                 </div>
                 @empty
-                <div class="text-center text-muted mt-5">
-                    Tidak ada testimoni yang ditemukan.
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian testimoni tidak ditemukan. Coba kata kunci lain.
                 </div>
                 @endforelse
             </div>
@@ -150,6 +168,103 @@
                 {{ $testimoni->appends(['search' => $search])->links('pagination::bootstrap-5') }}
             </div>
         </div>
+
+        <!-- Tab Guru -->
+        <div class="tab-pane fade" id="guru">
+            <div class="row g-5 justify-content-center">
+                @forelse ($guru as $g)
+                <div class="col-md-6">
+                    <div class="card card_guru mb-3 rounded-4 shadow border-0 bg-white">
+                        <div class="row g-0">
+                            <!-- Foto Guru -->
+                            <div class="col-md-4 media-card text-center rounded-4">
+                                <img src="{{ asset('storage/' . $g->foto) }}" class="img-fluid img-guru" alt="foto guru">
+                            </div>
+
+                            <!-- Info Guru -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <!-- Nama -->
+                                    <h5 class="card-title fw-bold text-primary mb-2">
+                                        {{ $g->nama }}
+                                    </h5>
+
+                                    <p class="text-muted mb-2">
+                                        <strong class="me-2">NIP : </strong> {{ $g?->nip }}
+                                    </p>
+
+                                    <p class="mb-2">
+                                        <strong>Email :</strong> {{ $g->email }}
+                                    </p>
+
+                                    <!-- Pendidikan -->
+                                    <p class="text-success d-flex align-items-center mb-2">
+                                        <i class="bi bi-mortarboard-fill fs-4 me-4"></i>
+                                        {{ $g->{"riwayat_pendidikan"} }}
+                                    </p>
+
+                                    <!-- Mapel -->
+                                    @if($g?->mapel->isNotEmpty())
+                                    <div class="card-text mb-2">
+                                        <strong class="me-2">Mata Pelajaran</strong>
+                                        <div class="d-flex flex-wrap gap-2 mt-2">
+                                            @foreach($g->mapel as $mapel)
+                                            <span class="badge rounded-pill shadow text-white border">
+                                                {{ $mapel->nama }}
+                                            </span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian guru tidak ditemukan. Coba kata kunci lain.
+                </div>
+                @endforelse
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-5 mb-3 d-flex justify-content-center">
+                {{ $guru->appends(['search' => $search])->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
+
+        <!-- Tab Galeri -->
+        <div class="tab-pane fade" id="galeri">
+            <div class="row text-start g-5 justify-content-center">
+                @forelse ($galeri as $g)
+                <div class="col-lg-3 col-md-4 col-sm-12 justify-content-center d-flex ">
+                    <div class="card card_galeri shadow position-relative">
+                        <a href="{{ asset('storage/' . $g->gambar) }}" data-lightbox="galeri" data-title="{{ $g->judul }}">
+                            <img src="{{ asset('storage/' . $g->gambar) }}" class="img-fluid h-100" alt="{{ $g->judul }}">
+                            <div class="info-overlay text-white h-100 w-100 d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-card-image fs-3"></i>
+                                <h5 class="fs-6 my-2 fw-bolder text-uppercase text-center">{{ $g->judul }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @empty
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian galeri tidak ditemukan. Coba kata kunci lain.
+                </div>
+                @endforelse
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-5 mb-5 d-flex justify-content-center">
+                {{ $galeri->appends(['search' => $search])->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
+
+
 
         <!-- Tab Ekstrakulikuler -->
         <div class="tab-pane fade" id="ekskul">
@@ -176,8 +291,9 @@
                     </a>
                 </div>
                 @empty
-                <div class="text-center text-muted mt-5">
-                    Tidak ada ekstrakulikuler yang ditemukan.
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian ekstrakulikuler tidak ditemukan. Coba kata kunci lain.
                 </div>
                 @endforelse
             </div>
@@ -211,8 +327,9 @@
                     </a>
                 </div>
                 @empty
-                <div class="text-center text-muted mt-5">
-                    Tidak ada program yang ditemukan.
+                <div class="alert alert-warning text-center rounded-4 " role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Hasil pencarian program unggulan tidak ditemukan. Coba kata kunci lain.
                 </div>
                 @endforelse
             </div>

@@ -32,13 +32,13 @@
         </div>
         @empty
         @if (request('search'))
-        <div class="text-center text-muted mt-4">
-            <i class="bi bi-search"></i> Tidak ada berita ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
+        <div class="alert alert-warning text-center rounded-4 mt-5 " role="alert">
+            <i class="bi bi-info-circle me-2"></i> Tidak ditemukan untuk pencarian: <strong>{{ request('search') }}</strong>
         </div>
         @else
-        <div class="alert alert-warning mt-5 rounded-4 d-flex align-items-center justify-content-center" role="alert" data-aos="fade-up">
-            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
-            <h5 class="text-muted my-3">Belum ada Berita yang ditampilkan</h5>
+        <div class="alert alert-warning text-center rounded-4 mt-5" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <h5 class="text-muted my-3">Belum ada berita yang ditampilkan</h5>
         </div>
         @endif
         @endforelse

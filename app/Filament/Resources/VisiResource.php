@@ -36,11 +36,6 @@ class VisiResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\Textarea::make('sejarah')
-                //     ->label('Sejarah')
-                //     ->rows(5)
-                //     ->required(),
-
                 Forms\Components\RichEditor::make('sejarah')
                     ->label('Sejarah')
                     ->columnSpanFull()

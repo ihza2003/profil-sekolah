@@ -14,7 +14,7 @@
     </form> -->
 
     <form action="{{ $route }}" method="GET"
-        class="d-flex justify-content-center seacrh-global shadow p-1 bg-white rounded-3">
+        class="d-flex justify-content-center shadow p-1 bg-white rounded-3">
         <input class="form-control border-0"
             type="text"
             name="search"

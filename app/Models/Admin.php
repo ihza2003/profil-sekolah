@@ -155,6 +155,7 @@ class Admin extends Authenticatable implements FilamentUser
         return $this->hasOne(StatistikSekolah::class);
     }
 
+    // Relasi One-to-one dengan model Pengaturan Website
     public function pengaturanWebsite()
     {
         return $this->hasOne(PengaturanWebsite::class);

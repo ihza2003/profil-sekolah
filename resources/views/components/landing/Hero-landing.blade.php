@@ -26,7 +26,7 @@
                          "Berkarya, Kreatif, dan Terunggul"
                      </p>
                      @endif
-                     <form action="{{ route('search.global') }}" method="GET"
+                     <form action="{{ route('beranda.search.global') }}" method="GET"
                          class="d-flex w-50 seacrh-global shadow-sm p-1 bg-white rounded-3"
                          data-aos="fade-up">
                          <input class="form-control border-0"

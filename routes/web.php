@@ -16,6 +16,7 @@ use App\Http\Controllers\AkreditasController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\SearchGlobalController;
 
 
 // Route::get('/', function () {
@@ -25,7 +26,7 @@ use App\Http\Controllers\TestimoniController;
 // route beranda
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/detailSambutan/{id}', [BerandaController::class, 'showsambutan'])->name('beranda.detail-sambutan');
-Route::get('/pencarian', [BerandaController::class, 'global'])->name('search.global');
+Route::get('/pencarian', [SearchGlobalController::class, 'global'])->name('beranda.search.global');
 // Route Testimoni
 Route::get('/testimoni', [TestimoniController::class, 'showTestimoni'])->name('beranda.testimoni');
 Route::get('/testimoni/pencarian', [TestimoniController::class, 'searchTestimoni'])->name('beranda.testimoni.search');
@@ -38,9 +39,7 @@ Route::get('/akreditasi', [AkreditasController::class, 'showAkreditasi'])->name(
 Route::get('/download-akreditasi', [AkreditasController::class, 'downloadPDF'])->name('profile.download-akreditas');
 Route::get('/fasilitas', [FasilitasController::class, 'showFasilitas'])->name('profile.fasilitas');
 Route::get('/guru', [GuruController::class, 'showGuru'])->name('profile.guru');
-Route::get('/guru/pencarian', [GuruController::class, 'searchGuru'])->name('guru.search');
-
-
+Route::get('/guru/pencarian', [GuruController::class, 'searchGuru'])->name('profile.guru.search');
 
 
 // Route kelompok informasi
@@ -53,7 +52,7 @@ Route::get('/prestasi', [PrestasiController::class, 'showPrestasi'])->name('info
 Route::get('/prestasi/pencarian', [PrestasiController::class, 'searchPrestasi'])->name('informasi.prestasi.search');
 Route::get('/prestasi/detail/{id}', [PrestasiController::class, 'DetailPrestasi'])->name('informasi.prestasi.detail');
 // Route Galeri
-Route::get('/Galeri', [GaleriController::class, 'showGaleri'])->name('informasi.galeri');
+Route::get('/galeri', [GaleriController::class, 'showGaleri'])->name('informasi.galeri');
 // end route informasi
 
 // routte kelompok akademik
@@ -67,13 +66,10 @@ Route::get('/ekstrakurikuler/detail/{id}', [EkskulController::class, 'DetailEksk
 // Route program unggulan
 Route::get('/program-unggulan', [ProgramController::class, 'showProgram'])->name('akademik.programunggulan');
 Route::get('/program-unggulan/detail/{id}', [ProgramController::class, 'DetailProgram'])->name('akademik.programunggulan.detail');
-
 // end route akademik
-
 
 // Route Kontak
 Route::get('/kontak', [KontakController::class, 'showkontak'])->name('kontak');
-
 
 // Route ppdb
 Route::get('/informasi-ppdb', [PpdbController::class, 'show_informasiPPDB'])->name('ppdb.informasi');
